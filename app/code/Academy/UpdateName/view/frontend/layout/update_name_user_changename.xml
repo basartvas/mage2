@@ -2,7 +2,7 @@
     <referenceBlock name="content">
         <block
                 template="changeName.phtml"
-                class="Academy\UpdateName\Block\Main"
-                name="update_name_user_changeName"/>
+                class="Academy\UpdateName\Block\ChangeName"
+                name="update_name_user_changename"/>
     </referenceBlock>
 </page>

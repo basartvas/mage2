@@ -2,7 +2,7 @@
     <referenceBlock name="content">
         <block
                 template="index.phtml"
-                class="Academy\UpdateName\Block\Main"
+                class="Academy\UpdateName\Block\Index"
                 name="update_name_user_index"/>
     </referenceBlock>
 </page>

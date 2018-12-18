@@ -4,7 +4,7 @@ namespace Academy\UpdateName\Block;
 
 use Magento\Framework\View\Element\Template;
 
-class Main extends Template
+class Index extends Template
 {
     protected function _prepareLayout()
     {

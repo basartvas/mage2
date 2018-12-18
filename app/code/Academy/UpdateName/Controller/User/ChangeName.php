@@ -42,9 +42,7 @@ class ChangeName extends Action
             $page_object = $this->page_factory->create();
             return $page_object;
         } else {
-            $result_redirect =  $this->redirect_factory->create();
-            $result_redirect->setPath('customer/account/login');
-            return $result_redirect;
+            return $this->redirect_factory->create()->setPath('customer/account/login');
         }
     }
 }
