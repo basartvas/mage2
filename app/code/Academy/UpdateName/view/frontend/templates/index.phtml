@@ -1,1 +1,4 @@
 <h1>Hello <?php echo $block->getCustomerName() ?></h1>
+<div class="primary">
+    <a href="<?= $block->escapeUrl($block->getChangeHref()) ?>" class="action primary"><span>Change Name</span></a>
+</div>
