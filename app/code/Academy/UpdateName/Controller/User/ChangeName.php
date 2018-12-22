@@ -15,17 +15,28 @@ class ChangeName extends Action
     protected $customerSession;
     protected $redirectFactory;
 
-    public function __construct(Context $context,
-                                PageFactory $resultPageFactory,
-                                Session $customerSession,
-                                RedirectFactory $redirectFactory)
-    {
+    /**
+     * ChangeName constructor.
+     * @param Context $context
+     * @param PageFactory $resultPageFactory
+     * @param Session $customerSession
+     * @param RedirectFactory $redirectFactory
+     */
+    public function __construct(
+        Context $context,
+        PageFactory $resultPageFactory,
+        Session $customerSession,
+        RedirectFactory $redirectFactory
+    ) {
         parent::__construct($context);
         $this->resultPageFactory = $resultPageFactory;
         $this->customerSession = $customerSession;
         $this->redirectFactory = $redirectFactory;
     }
 
+    /**
+     * @return \Magento\Framework\App\ResponseInterface|\Magento\Framework\Controller\Result\Redirect|\Magento\Framework\Controller\ResultInterface|\Magento\Framework\View\Result\Page
+     */
     public function execute()
     {
         if ($this->customerSession->isLoggedIn()) {

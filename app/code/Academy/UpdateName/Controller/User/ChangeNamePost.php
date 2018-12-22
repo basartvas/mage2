@@ -20,13 +20,23 @@ class ChangeNamePost extends Action
     protected $messageManager;
 
 
-    public function __construct(Context $context,
-                                PageFactory $pageFactory,
-                                RedirectFactory $redirectFactory,
-                                CustomerRepositoryInterface $customerRepository,
-                                Session $customerSession,
-                                ManagerInterface $messageManager)
-    {
+    /**
+     * ChangeNamePost constructor.
+     * @param Context $context
+     * @param PageFactory $pageFactory
+     * @param RedirectFactory $redirectFactory
+     * @param CustomerRepositoryInterface $customerRepository
+     * @param Session $customerSession
+     * @param ManagerInterface $messageManager
+     */
+    public function __construct(
+        Context $context,
+        PageFactory $pageFactory,
+        RedirectFactory $redirectFactory,
+        CustomerRepositoryInterface $customerRepository,
+        Session $customerSession,
+        ManagerInterface $messageManager
+    ) {
         parent::__construct($context);
         $this->pageFactory = $pageFactory;
         $this->redirectFactory = $redirectFactory;
@@ -35,6 +45,9 @@ class ChangeNamePost extends Action
         $this->messageManager = $messageManager;
     }
 
+    /**
+     * @return \Magento\Framework\App\ResponseInterface|\Magento\Framework\Controller\Result\Redirect|\Magento\Framework\Controller\ResultInterface
+     */
     public function execute()
     {
         if (!$this->getRequest()->isPost()) {
@@ -63,6 +76,10 @@ class ChangeNamePost extends Action
         return $this->redirectFactory->create()->setPath('update/user/changenamesuccess');
     }
 
+    /**
+     * @return array
+     * @throws LocalizedException
+     */
     private function validatedParams()
     {
         $request = $this->getRequest();

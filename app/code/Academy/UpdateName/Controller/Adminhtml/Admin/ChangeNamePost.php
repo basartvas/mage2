@@ -18,6 +18,14 @@ class ChangeNamePost extends Action
     protected $adminSession;
     protected $adminUser;
 
+    /**
+     * ChangeNamePost constructor.
+     * @param Context $context
+     * @param PageFactory $resultPageFactory
+     * @param RedirectFactory $resultRedirectFactory
+     * @param Session $adminSession
+     * @param User $adminUser
+     */
     public function __construct(
         Context $context,
         PageFactory $resultPageFactory,
@@ -33,6 +41,9 @@ class ChangeNamePost extends Action
     }
 
 
+    /**
+     * @return \Magento\Framework\App\ResponseInterface|\Magento\Framework\Controller\Result\Redirect|\Magento\Framework\Controller\ResultInterface
+     */
     public function execute()
     {
         if (!$this->getRequest()->isPost()) {
@@ -40,7 +51,6 @@ class ChangeNamePost extends Action
         }
         try {
             $validatedParams = $this->validatedParams();
-
             $username = $this->adminSession->getUser()->getUserName();
             $user = $this->adminUser->loadByUsername($username);
             $user->setFirstName($validatedParams['first-name']);
@@ -73,4 +83,3 @@ class ChangeNamePost extends Action
         return $request->getParams();
     }
 }
-?>
