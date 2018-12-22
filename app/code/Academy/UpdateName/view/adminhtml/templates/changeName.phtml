@@ -1,24 +1,24 @@
 <form class="form" action="<?= $block->escapeUrl($block->getUrl('update/admin/changenamepost')) ?>" id="change-name-form" method="post" data-hasrequired="* Required Fields" novalidate="novalidate">
     <input name="form_key" type="hidden" value="<?= $block->getFormKey() ?>" />
-    <fieldset class="fieldset">
-        <legend class="legend"><span>Change Name</span></legend><br>
-        <div class="field note no-label">Here you can change your name.</div>
-        <div class="field first-name required">
-            <label class="label" for="first-name"><span>First Name</span></label>
-            <div class="control">
-                <input name="first-name" id="first-name" title="First Name" class="input-text" type="text" data-validate="{required:true}" aria-required="true">
+    <fieldset>
+        <div>Here you can change your name.</div>
+        <div>
+            <label for="first-name">
+                <span>First Name</span>
+            </label>
+            <div>
+                <input name="first-name" id="first-name" title="First Name" class="input-text" type="text">
             </div>
         </div>
-        <div class="field last-name required">
-            <label class="label" for="last-name"><span>Last Name</span></label>
-            <div class="control">
-                <input name="last-name" id="last-name" title="Last Name" class="input-text" type="text" data-validate="{required:true, 'validate-email':true}" aria-required="true">
+        <div>
+            <label for="last-name"><span>Last Name</span></label>
+            <div>
+                <input name="last-name" id="last-name" title="Last Name" class="input-text" type="text">
             </div>
         </div>
     </fieldset>
-    <div class="actions-toolbar">
-        <div class="primary">
-            <input type="hidden" name="hideit" id="hideit" value="">
+    <div>
+        <div>
             <button type="submit" title="Submit" class="action submit primary">
                 <span>Submit</span>
             </button>

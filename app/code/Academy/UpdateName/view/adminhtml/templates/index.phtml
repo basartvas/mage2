@@ -1,4 +1,2 @@
 <h1>Hello <?php echo $block->getAdminName() ?></h1>
-<div class="primary">
-    <a href="<?= $block->escapeUrl($block->getUrl('update/admin/changename')) ?>" class="action primary"><span>Change Name</span></a>
-</div>
+<a href="<?= $block->escapeUrl($block->getUrl('update/admin/changename')) ?>" class="action-primary"><span>Change Name</span></a>
