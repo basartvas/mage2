@@ -1,4 +1,4 @@
-<form class="form" action="http://127.0.0.1/magento2/admin/adminnewpage/administrator/changenamepost" id="change-name-form" method="post" data-hasrequired="* Required Fields" novalidate="novalidate">
+<form class="form" action="<?= $block->escapeUrl($block->getUrl('update/admin/changenamepost')) ?>" id="change-name-form" method="post" data-hasrequired="* Required Fields" novalidate="novalidate">
     <input name="form_key" type="hidden" value="<?= $block->getFormKey() ?>" />
     <fieldset class="fieldset">
         <legend class="legend"><span>Change Name</span></legend><br>

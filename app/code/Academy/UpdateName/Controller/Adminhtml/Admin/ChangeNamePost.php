@@ -1,31 +1,34 @@
 <?php
 
-namespace Academy\UpdateName\Controller\Adminhtml\Administrator;
+namespace Academy\UpdateName\Controller\Adminhtml\Admin;
 
 use Magento\Backend\App\Action;
 use Magento\Framework\Exception\LocalizedException;
 use Magento\Framework\Controller\Result\RedirectFactory;
+use Magento\Backend\App\Action\Context;
+use Magento\Framework\View\Result\PageFactory;
+use Magento\Backend\Model\Auth\Session;
+use Magento\User\Model\User;
 
 
 class ChangeNamePost extends Action
 {
-
     protected $resultPageFactory;
     protected $resultRedirectFactory;
-    protected $session;
+    protected $adminSession;
     protected $adminUser;
 
     public function __construct(
-        \Magento\Backend\App\Action\Context $context,
-        \Magento\Framework\View\Result\PageFactory $resultPageFactory,
+        Context $context,
+        PageFactory $resultPageFactory,
         RedirectFactory $resultRedirectFactory,
-        \Magento\Backend\Model\Auth\Session $session,
-        \Magento\User\Model\User $adminUser
+        Session $adminSession,
+        User $adminUser
     ) {
         parent::__construct($context);
         $this->resultPageFactory = $resultPageFactory;
         $this->resultRedirectFactory = $resultRedirectFactory;
-        $this->session = $session;
+        $this->adminSession = $adminSession;
         $this->adminUser = $adminUser;
     }
 
@@ -36,26 +39,26 @@ class ChangeNamePost extends Action
             return $this->resultRedirectFactory->create()->setPath('*/*/');
         }
         try {
-            $validated_params = $this->validatedParams();
+            $validatedParams = $this->validatedParams();
 
-            $username = $this->session->getUser()->getUserName();
+            $username = $this->adminSession->getUser()->getUserName();
             $user = $this->adminUser->loadByUsername($username);
-            $user->setFirstName($validated_params['first-name']);
-            $user->setLastName($validated_params['last-name']);
+            $user->setFirstName($validatedParams['first-name']);
+            $user->setLastName($validatedParams['last-name']);
             $user->save();
             $this->messageManager->addSuccessMessage(
                 __('You have changed your name successfully!')
             );
         } catch (LocalizedException $e) {
             $this->messageManager->addErrorMessage($e->getMessage());
-            return $this->resultRedirectFactory->create()->setPath('adminnewpage/administrator/changename');
+            return $this->resultRedirectFactory->create()->setPath('update/admin/changename');
         } catch (\Exception $e) {
             $this->messageManager->addErrorMessage(
                 __('An error occurred while processing your form. Please try again later.')
             );
-            return $this->resultRedirectFactory->create()->setPath('adminnewpage/administrator/changename');
+            return $this->resultRedirectFactory->create()->setPath('update/admin/changename');
         }
-        return $this->resultRedirectFactory->create()->setPath('adminnewpage/administrator/changename');
+        return $this->resultRedirectFactory->create()->setPath('update/admin/changenamesuccess');
     }
 
     private function validatedParams()

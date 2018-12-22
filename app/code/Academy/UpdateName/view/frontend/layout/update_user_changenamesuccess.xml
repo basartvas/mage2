@@ -1,0 +1,15 @@
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" layout="1column" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <head>
+        <title>
+            Change Name Success Page
+        </title>
+    </head>
+    <body>
+        <referenceBlock name="content">
+            <block
+                    template="Academy_UpdateName::changeNameSuccess.phtml"
+                    class="Magento\Framework\View\Element\Template"
+                    name="update_user_changenamesuccess"/>
+        </referenceBlock>
+    </body>
+</page>
