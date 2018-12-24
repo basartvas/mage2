@@ -33,18 +33,12 @@ class Index extends Action
         $this->redirectFactory = $redirectFactory;
     }
 
-    /**
-     * @return \Magento\Framework\App\ResponseInterface|\Magento\Framework\Controller\Result\Redirect|\Magento\Framework\Controller\ResultInterface|\Magento\Framework\View\Result\Page
-     */
+
     public function execute()
     {
         if ($this->customerSession->isLoggedIn()) {
-            $resultPageObject = $this->resultPageFactory->create();
-            $customerName = $this->customerSession->getCustomer()->getName();
-            $resultPageObject->getLayout()->getBlock('update_user_index')->setCustomerName($customerName);
-            return $resultPageObject;
-        } else {
-            return $this->redirectFactory->create()->setPath('customer/account/login');
+            return $this->resultPageFactory->create();
         }
+        return $this->redirectFactory->create()->setPath('customer/account/login');
     }
 }

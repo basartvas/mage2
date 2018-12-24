@@ -41,8 +41,7 @@ class ChangeNameSuccess extends Action
     {
         if ($this->customerSession->isLoggedIn()) {
             return $this->pageFactory->create();
-        } else {
-            return $this->redirectFactory->create()->setPath('customer/account/login');
         }
+        return $this->redirectFactory->create()->setPath('customer/account/login');
     }
 }

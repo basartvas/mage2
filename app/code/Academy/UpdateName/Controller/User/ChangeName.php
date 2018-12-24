@@ -40,10 +40,8 @@ class ChangeName extends Action
     public function execute()
     {
         if ($this->customerSession->isLoggedIn()) {
-            $resultPageFactory = $this->resultPageFactory->create();
-            return $resultPageFactory;
-        } else {
-            return $this->redirectFactory->create()->setPath('customer/account/login');
+            return $resultPageFactory = $this->resultPageFactory->create();
         }
+        return $this->redirectFactory->create()->setPath('customer/account/login');
     }
 }

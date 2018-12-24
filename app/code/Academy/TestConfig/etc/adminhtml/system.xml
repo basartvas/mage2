@@ -1,0 +1,37 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Config:etc/system_file.xsd">
+    <system>
+        <tab id="academy" translate="label">
+            <label>Academy</label>
+        </tab>
+        <section id="academy" translate="label" showInDefault="1" showInStore="0" showInWebsite="0">
+            <tab>academy</tab>
+            <label>Academy General</label>
+            <resource>Academy_Testconfig::config</resource>
+            <group id="test_group" translate="label" showInDefault="1" showInStore="0" showInWebsite="0">
+                <label>TestGroup</label>
+                <field id="enabled" translate="label" showInDefault="1" showInStore="0" showInWebsite="0" type="text">
+                    <label>Test text field</label>
+                </field>
+                <field id="image" translate="label" showInWebsite="0" showInDefault="1" showInStore="0" type="imagefile">
+                    <label>Image File</label>
+                </field>
+                <field id="multi" translate="label" showInWebsite="0" showInDefault="1" showInStore="0" type="multiselect">
+                    <label>Multi</label>
+                    <options>
+                        <option label="CA">Canada</option>
+                        <option label="US">USA</option>
+                        <option label="UK">Ukraine</option>
+                    </options>
+                </field>
+            </group>
+        </section>
+        <section id="web" translate="label" showInDefault="1" showInStore="0" showInWebsite="0">
+            <group id="url" translate="label" showInDefault="1" showInStore="0" showInWebsite="0">
+                <field id="enabled" translate="label" showInDefault="1" showInStore="0" showInWebsite="0" type="text" sortOrder="1000">
+                    <label>Test New Field</label>
+                </field>
+            </group>
+        </section>
+    </system>
+</config>

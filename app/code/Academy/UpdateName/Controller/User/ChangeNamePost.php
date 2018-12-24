@@ -19,16 +19,6 @@ class ChangeNamePost extends Action
     protected $customerSession;
     protected $messageManager;
 
-
-    /**
-     * ChangeNamePost constructor.
-     * @param Context $context
-     * @param PageFactory $pageFactory
-     * @param RedirectFactory $redirectFactory
-     * @param CustomerRepositoryInterface $customerRepository
-     * @param Session $customerSession
-     * @param ManagerInterface $messageManager
-     */
     public function __construct(
         Context $context,
         PageFactory $pageFactory,
@@ -76,10 +66,7 @@ class ChangeNamePost extends Action
         return $this->redirectFactory->create()->setPath('update/user/changenamesuccess');
     }
 
-    /**
-     * @return array
-     * @throws LocalizedException
-     */
+
     private function validatedParams()
     {
         $request = $this->getRequest();

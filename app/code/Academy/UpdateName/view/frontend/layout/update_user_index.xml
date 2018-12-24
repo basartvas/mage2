@@ -8,7 +8,7 @@
         <referenceBlock name="content">
             <block
                     template="Academy_UpdateName::index.phtml"
-                    class="Magento\Framework\View\Element\Template"
+                    class="Academy\UpdateName\Block\User\Index"
                     name="update_user_index">
             </block>
         </referenceBlock>

@@ -8,12 +8,9 @@
     <body>
         <referenceContainer name="content">
             <block
-                    class="Magento\Backend\Block\Template"
+                    class="Academy\UpdateName\Block\Adminhtml\Index"
                     template="Academy_UpdateName::changeName.phtml"
                     name="update_admin_changename"/>
-            <block
-                    class="Magento\Framework\View\Element\FormKey"
-                    name="formkey"/>
         </referenceContainer>
     </body>
 </page>

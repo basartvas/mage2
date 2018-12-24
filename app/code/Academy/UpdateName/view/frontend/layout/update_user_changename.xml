@@ -8,7 +8,7 @@
         <referenceBlock name="content">
             <block
                     template="Academy_UpdateName::changeName.phtml"
-                    class="Magento\Framework\View\Element\Template"
+                    class="Academy\UpdateName\Block\User\ChangeName"
                     name="update_user_changename"/>
         </referenceBlock>
     </body>
