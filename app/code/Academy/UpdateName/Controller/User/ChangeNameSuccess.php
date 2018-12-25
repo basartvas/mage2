@@ -7,7 +7,7 @@ use Magento\Framework\View\Result\PageFactory;
 use Magento\Framework\App\Action\Action;
 use Magento\Framework\App\Action\Context;
 use Magento\Customer\Model\Session;
-
+use Academy\UpdateName\Helper\Data as Helper;
 
 class ChangeNameSuccess extends Action
 {
@@ -15,13 +15,6 @@ class ChangeNameSuccess extends Action
     protected $customerSession;
     protected $redirectFactory;
 
-    /**
-     * ChangeNameSuccess constructor.
-     * @param Context $context
-     * @param PageFactory $pageFactory
-     * @param Session $customerSession
-     * @param RedirectFactory $redirectFactory
-     */
     public function __construct(
         Context $context,
         PageFactory $pageFactory,
@@ -34,14 +27,11 @@ class ChangeNameSuccess extends Action
         $this->redirectFactory = $redirectFactory;
     }
 
-    /**
-     * @return \Magento\Framework\App\ResponseInterface|\Magento\Framework\Controller\Result\Redirect|\Magento\Framework\Controller\ResultInterface|\Magento\Framework\View\Result\Page
-     */
     public function execute()
     {
         if ($this->customerSession->isLoggedIn()) {
             return $this->pageFactory->create();
         }
-        return $this->redirectFactory->create()->setPath('customer/account/login');
+        return $this->redirectFactory->create()->setPath(Helper::LOGIN_PATH);
     }
 }

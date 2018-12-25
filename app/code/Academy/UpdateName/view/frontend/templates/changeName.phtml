@@ -1,4 +1,4 @@
-<form class="form" action="<?= $block->escapeUrl($block->getUrl('update/user/changenamepost')) ?>" id="change-name-form" method="post" data-hasrequired="* Required Fields" novalidate="novalidate">
+<form class="form" action="<?= $block->escapeUrl($block->getUrl($block->getChangeNamePost())) ?>" id="change-name-form" method="post" data-hasrequired="* Required Fields" novalidate="novalidate">
     <fieldset class="fieldset">
         <div class="field note no-label">Here you can change your name.</div>
         <div class="field first-name required">

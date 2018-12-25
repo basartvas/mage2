@@ -9,6 +9,7 @@ use Magento\Backend\App\Action\Context;
 use Magento\Framework\View\Result\PageFactory;
 use Magento\Backend\Model\Auth\Session;
 use Magento\User\Model\ResourceModel\User;
+use Academy\UpdateName\Helper\Data as Helper;
 
 class ChangeNamePost extends Action
 {
@@ -53,14 +54,14 @@ class ChangeNamePost extends Action
             );
         } catch (LocalizedException $e) {
             $this->messageManager->addErrorMessage($e->getMessage());
-            return $resultRedirect->setPath('update/admin/changename');
+            return $resultRedirect->setPath(Helper::ADMIN_CHANGE_NAME_PATH);
         } catch (\Exception $e) {
             $this->messageManager->addErrorMessage(
                 __('An error occurred while processing your form. Please try again later.')
             );
-            return $resultRedirect->setPath('update/admin/changename');
+            return $resultRedirect->setPath(Helper::ADMIN_CHANGE_NAME_PATH);
         }
-        return $resultRedirect->setPath('update/admin/changenamesuccess');
+        return $resultRedirect->setPath(Helper::ADMIN_CHANGE_NAME_SUCCESS_PATH);
     }
 
     private function validatedParams()

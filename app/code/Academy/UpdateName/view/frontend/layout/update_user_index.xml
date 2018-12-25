@@ -9,8 +9,7 @@
             <block
                     template="Academy_UpdateName::index.phtml"
                     class="Academy\UpdateName\Block\User\Index"
-                    name="update_user_index">
-            </block>
+                    name="update_user_index"/>
         </referenceBlock>
     </body>
 </page>

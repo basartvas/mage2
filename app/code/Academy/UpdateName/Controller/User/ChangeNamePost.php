@@ -10,6 +10,7 @@ use Magento\Framework\App\Action\Context;
 use Magento\Customer\Api\CustomerRepositoryInterface;
 use Magento\Customer\Model\Session;
 use Magento\Framework\Message\ManagerInterface;
+use Academy\UpdateName\Helper\Data as Helper;
 
 class ChangeNamePost extends Action
 {
@@ -56,14 +57,14 @@ class ChangeNamePost extends Action
             );
         } catch (LocalizedException $e) {
             $this->messageManager->addErrorMessage($e->getMessage());
-            return $this->redirectFactory->create()->setPath('update/user/changename');
+            return $this->redirectFactory->create()->setPath(Helper::USER_CHANGE_NAME_PATH);
         } catch (\Exception $e) {
             $this->messageManager->addErrorMessage(
                 __('An error occurred while processing your form. Please try again later.')
             );
-            return $this->redirectFactory->create()->setPath('update/user/changename');
+            return $this->redirectFactory->create()->setPath(Helper::USER_CHANGE_NAME_PATH);
         }
-        return $this->redirectFactory->create()->setPath('update/user/changenamesuccess');
+        return $this->redirectFactory->create()->setPath(Helper::USER_CHANGE_NAME_SUCCESS_PATH);
     }
 
 

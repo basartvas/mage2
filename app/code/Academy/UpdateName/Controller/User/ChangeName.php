@@ -7,7 +7,7 @@ use Magento\Framework\View\Result\PageFactory;
 use Magento\Framework\App\Action\Action;
 use Magento\Framework\App\Action\Context;
 use Magento\Customer\Model\Session;
-
+use Academy\UpdateName\Helper\Data as Helper;
 
 class ChangeName extends Action
 {
@@ -42,6 +42,6 @@ class ChangeName extends Action
         if ($this->customerSession->isLoggedIn()) {
             return $resultPageFactory = $this->resultPageFactory->create();
         }
-        return $this->redirectFactory->create()->setPath('customer/account/login');
+        return $this->redirectFactory->create()->setPath(Helper::LOGIN_PATH);
     }
 }

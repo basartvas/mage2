@@ -7,6 +7,7 @@ use Magento\Framework\View\Result\PageFactory;
 use Magento\Framework\App\Action\Action;
 use Magento\Framework\App\Action\Context;
 use Magento\Customer\Model\Session;
+use Academy\UpdateName\Helper\Data as Helper;
 
 class Index extends Action
 {
@@ -14,13 +15,6 @@ class Index extends Action
     protected $customerSession;
     protected $redirectFactory;
 
-    /**
-     * Index constructor.
-     * @param Context $context
-     * @param PageFactory $resultPageFactory
-     * @param Session $customerSession
-     * @param RedirectFactory $redirectFactory
-     */
     public function __construct(
         Context $context,
         PageFactory $resultPageFactory,
@@ -39,6 +33,6 @@ class Index extends Action
         if ($this->customerSession->isLoggedIn()) {
             return $this->resultPageFactory->create();
         }
-        return $this->redirectFactory->create()->setPath('customer/account/login');
+        return $this->redirectFactory->create()->setPath(Helper::LOGIN_PATH);
     }
 }

@@ -5,6 +5,7 @@ namespace Academy\UpdateName\Block\User;
 use Magento\Framework\View\Element\Template;
 use Magento\Framework\View\Element\Template\Context;
 use Magento\Customer\Model\Session;
+use Academy\UpdateName\Helper\Data as Helper;
 
 class Index extends Template
 {
@@ -23,4 +24,8 @@ class Index extends Template
         return $this->customerSession->getCustomer()->getName();
     }
 
+    public function getChangeNamePath()
+    {
+        return Helper::USER_CHANGE_NAME_PATH;
+    }
 }
