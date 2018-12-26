@@ -1,0 +1,9 @@
+{
+    "name": "academy/lesson7",
+    "description": "N/A",
+    "require": {
+        "php": "~7.0.13|~7.1.0"
+    },
+    "type": "magento2-module",
+    "version": "1.0.1"
+}
