@@ -1,0 +1,13 @@
+<?xml version="1.0"?>
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <body>
+        <referenceBlock name="page.top">
+            <block
+                    template="Academy_Lesson6::back-to-overview.phtml"
+                    class="Academy\Lesson6\Block\BackToOverview"
+                    name="back-to-overview"
+                    ifconfig="academy/back_to_overview/status"/>
+        </referenceBlock>
+    </body>
+</page>
+

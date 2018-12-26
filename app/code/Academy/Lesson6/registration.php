@@ -2,6 +2,6 @@
 use Magento\Framework\Component\ComponentRegistrar;
 ComponentRegistrar::register(
     ComponentRegistrar::MODULE,
-    'Academy_TestConfig',
+    'Academy_Lesson6',
     __DIR__
 );

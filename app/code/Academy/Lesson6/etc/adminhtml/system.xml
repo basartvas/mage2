@@ -1,0 +1,29 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Config:etc/system_file.xsd">
+    <system>
+        <tab id="academy" translate="label">
+            <label>Academy</label>
+        </tab>
+        <section id="academy" translate="label" showInDefault="1" showInStore="0" showInWebsite="0">
+            <tab>academy</tab>
+            <label>Lesson 6</label>
+            <resource>Academy_Lesson6::config</resource>
+            <group id="back_to_dashboard" translate="label" showInDefault="1" showInStore="0" showInWebsite="0">
+                <label>Back to Dashboard</label>
+                <field id="status" translate="label" showInDefault="1" showInStore="0" showInWebsite="0" type="select">
+                    <label>Enabled</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                    <config_path>academy/back_to_dashboard/status</config_path>
+                </field>
+            </group>
+            <group id="back_to_overview" translate="label" showInDefault="1" showInStore="0" showInWebsite="0">
+                <label>Back to Overview</label>
+                <field id="status" translate="label" showInWebsite="0" showInDefault="1" showInStore="0" type="select">
+                    <label>Enabled</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                    <config_path>academy/back_to_overview/status</config_path>
+                </field>
+            </group>
+        </section>
+    </system>
+</config>
