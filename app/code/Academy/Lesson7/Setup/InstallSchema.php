@@ -33,7 +33,7 @@ class InstallSchema implements InstallSchemaInterface
                     Table::TYPE_TEXT,
                     255,
                     [
-                        'nullable' => false,
+                        'nullable' => false
                     ],
                     'Identifier'
                 )
@@ -42,22 +42,69 @@ class InstallSchema implements InstallSchemaInterface
                     Table::TYPE_TEXT,
                     255,
                     [
-                        'nullable' => false,
+                        'nullable' => false
                     ],
-                    'Identifier'
+                    'Title'
                 )
-
+                ->addColumn(
+                    'content',
+                    Table::TYPE_TEXT,
+                    255,
+                    [
+                        'nullable' => false
+                    ],
+                    'Content'
+                )
+                ->addColumn(
+                    'author',
+                    Table::TYPE_TEXT,
+                    255,
+                    [
+                        'nullable' => false
+                    ],
+                    'Author'
+                )
+                ->addColumn(
+                    'creation_time',
+                    Table::TYPE_TIMESTAMP,
+                    null,
+                    [
+                        'nullable' => false,
+                        'default' =>Table::TIMESTAMP_INIT
+                    ],
+                    'Creation Time'
+                )
+                ->addColumn(
+                    'update_time',
+                    Table::TYPE_TIMESTAMP,
+                    null,
+                    [
+                        'nullable' => false,
+                        'default' =>Table::TIMESTAMP_INIT_UPDATE
+                    ],
+                    'Update Time'
+                )
+                ->addColumn(
+                    'is_active',
+                    Table::TYPE_BOOLEAN,
+                    null,
+                    [
+                        'nullable' => false
+                    ],
+                    'Is Active'
+                )
+                ->addColumn(
+                    'sort_order',
+                    Table::TYPE_INTEGER,
+                    null,
+                    [
+                        'nullable' => false
+                    ],
+                    'Sort Order'
+                )
                 ->setComment('News');
             $installer->getConnection()->createTable($table);
         }
-
-        title,
-        content,
-        author,
-        creation_time,
-        update_time,
-        is_active,
-        sort_order
         $installer->endSetup();
     }
 }
