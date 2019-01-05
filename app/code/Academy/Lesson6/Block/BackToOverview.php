@@ -8,8 +8,16 @@ use Magento\Framework\App\Response\RedirectInterface;
 
 class BackToOverview extends Template
 {
+    /**
+     * @var RedirectInterface
+     */
     protected $redirectInterface;
 
+    /**
+     * BackToOverview constructor.
+     * @param Context $context
+     * @param RedirectInterface $redirectInterface
+     */
     public function __construct(
         Context $context,
         RedirectInterface $redirectInterface
@@ -18,6 +26,9 @@ class BackToOverview extends Template
         $this->redirectInterface = $redirectInterface;
     }
 
+    /**
+     * @return string
+     */
     public function getBackUrl()
     {
         return $this->redirectInterface->getRefererUrl();

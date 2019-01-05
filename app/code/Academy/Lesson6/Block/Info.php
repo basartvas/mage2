@@ -4,12 +4,6 @@ namespace Academy\Lesson6\Block;
 
 use Magento\Framework\Exception\NoSuchEntityException;
 
-/**
- * Dashboard Customer Info
- *
- * @api
- * @since 100.0.2
- */
 class Info extends \Magento\Framework\View\Element\Template
 {
     /**

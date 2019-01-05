@@ -4,10 +4,11 @@ namespace Academy\Lesson6\Block;
 
 class ListProduct extends \Magento\Catalog\Block\Product\ListProduct
 {
-    public function getMaterials(){
-        return $this->addAttribute('name');
-    }
-
+    /**
+     * @param \Magento\Catalog\Model\Product $product
+     * @return mixed|string
+     * @throws \Magento\Framework\Exception\LocalizedException
+     */
     public function getProductDetailsHtml(\Magento\Catalog\Model\Product $product)
     {
         $html = $this->getLayout()->createBlock('Magento\Framework\View\Element\Template')->setProduct($product)->setTemplate('Academy_Lesson6::list-product.phtml')->toHtml();
