@@ -4,20 +4,19 @@ namespace Academy\Lesson7\Block;
 
 class Index extends \Magento\Framework\View\Element\Template
 {
-    protected $newsFactory;
+    protected $newsRepo;
     public function __construct(
         \Magento\Framework\View\Element\Template\Context $context,
-        \Academy\Lesson7\Model\NewsFactory $newsFactory
+        \Academy\Lesson7\Model\NewsRepository $newsRepo
     )
     {
-        $this->newsFactory = $newsFactory;
+        $this->newsRepo = $newsRepo;
         parent::__construct($context);
     }
 
-    public function getNewsOne()
+  public function getNewsOne()
     {
-        $news = $this->newsFactory->create();
-        $news = $news->load(1);
-        return var_dump($news->getData());
+        $news = $this->newsRepo->getById(1)->getAuthor();
+        return var_dump($news);
     }
 }
