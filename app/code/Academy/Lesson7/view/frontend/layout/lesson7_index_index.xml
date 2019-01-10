@@ -1,0 +1,16 @@
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" layout="1column" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <head>
+        <title>
+            News
+        </title>
+    </head>
+    <body>
+        <referenceBlock name="content">
+            <block
+                    template="Academy_Lesson7::index.phtml"
+                    class="Academy\Lesson7\Block\Index"
+                    name="lesson7.news">
+            </block>
+        </referenceBlock>
+    </body>
+</page>
