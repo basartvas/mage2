@@ -3,29 +3,31 @@ declare(strict_types=1);
 
 namespace Academy\Lesson7\Model;
 
-use Academy\Lesson7\Model\ResourceModel\News as ResourceNews;
+use Academy\Lesson7\Model\ResourceModel\News as NewsResource;
 use Academy\Lesson7\Model\ResourceModel\News\CollectionFactory as NewsCollectionFactory;
 use Magento\Framework\Exception\CouldNotDeleteException;
 use Magento\Framework\Exception\CouldNotSaveException;
 use Magento\Framework\Exception\NoSuchEntityException;
 use Magento\Framework\Api\SearchCriteria\CollectionProcessorInterface;
 use Magento\Framework\Api\SearchResultsInterfaceFactory;
+use Academy\Lesson7\Api\NewsRepositoryInterface as NewsRepositoryInterface;
 
-class NewsRepository
+class NewsRepository implements NewsRepositoryInterface
 {
-    protected $resource;
+    protected $newsResource;
     protected $newsFactory;
     protected $newsCollectionFactory;
     protected $searchResultsInterfaceFactory;
+    protected $collectionProcessor;
 
     public function __construct(
-        ResourceNews $resource,
+        NewsResource $newsResource,
         NewsFactory $newsFactory,
         NewsCollectionFactory $newsCollectionFactory,
         CollectionProcessorInterface $collectionProcessor,
         SearchResultsInterfaceFactory $searchResultsInterfaceFactory
     ) {
-        $this->resource = $resource;
+        $this->newsResource = $newsResource;
         $this->newsFactory = $newsFactory;
         $this->newsCollectionFactory = $newsCollectionFactory;
         $this->collectionProcessor = $collectionProcessor;
@@ -35,7 +37,7 @@ class NewsRepository
     public function save(News $news)
     {
         try {
-            $this->resource->save($news);
+            $this->newsResource->save($news);
         } catch (\Exception $exception) {
             throw new CouldNotSaveException(
                 __('Could not save the news: %1', $exception->getMessage()),
@@ -48,7 +50,7 @@ class NewsRepository
     public function getById(int $id)
     {
         $news = $this->newsFactory->create();
-        $news->load($id);
+        $this->newsResource->load($news, $id);
         if (!$news->getId()) {
             throw new NoSuchEntityException(__('News with id "%1" does not exist.', $id));
         }
@@ -69,7 +71,7 @@ class NewsRepository
     public function delete(News $news)
     {
         try {
-            $this->resource->delete($news);
+            $this->newsResource->delete($news);
         } catch (\Exception $exception) {
             throw new CouldNotDeleteException(__(
                 'Could not delete the news: %1',
