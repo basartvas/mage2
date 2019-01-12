@@ -12,14 +12,45 @@ use Magento\Framework\Api\SearchCriteria\CollectionProcessorInterface;
 use Magento\Framework\Api\SearchResultsInterfaceFactory;
 use Academy\Lesson7\Api\NewsRepositoryInterface as NewsRepositoryInterface;
 
+/**
+ * Class NewsRepository
+ * @package Academy\Lesson7\Model
+ */
 class NewsRepository implements NewsRepositoryInterface
 {
+    /**
+     * @var NewsResource
+     */
     protected $newsResource;
+
+    /**
+     * @var NewsFactory
+     */
     protected $newsFactory;
+
+    /**
+     * @var NewsCollectionFactory
+     */
     protected $newsCollectionFactory;
+
+    /**
+     * @var SearchResultsInterfaceFactory
+     */
     protected $searchResultsInterfaceFactory;
+
+    /**
+     * @var CollectionProcessorInterface
+     */
     protected $collectionProcessor;
 
+    /**
+     * NewsRepository constructor.
+     * @param NewsResource $newsResource
+     * @param NewsFactory $newsFactory
+     * @param NewsCollectionFactory $newsCollectionFactory
+     * @param CollectionProcessorInterface $collectionProcessor
+     * @param SearchResultsInterfaceFactory $searchResultsInterfaceFactory
+     */
     public function __construct(
         NewsResource $newsResource,
         NewsFactory $newsFactory,
@@ -34,6 +65,11 @@ class NewsRepository implements NewsRepositoryInterface
         $this->searchResultsInterfaceFactory = $searchResultsInterfaceFactory;
     }
 
+    /**
+     * @param News $news
+     * @return News|mixed
+     * @throws CouldNotSaveException
+     */
     public function save(News $news)
     {
         try {
@@ -47,6 +83,11 @@ class NewsRepository implements NewsRepositoryInterface
         return $news;
     }
 
+    /**
+     * @param int $id
+     * @return News|mixed
+     * @throws NoSuchEntityException
+     */
     public function getById(int $id)
     {
         $news = $this->newsFactory->create();
@@ -57,6 +98,10 @@ class NewsRepository implements NewsRepositoryInterface
         return $news;
     }
 
+    /**
+     * @param \Magento\Framework\Api\SearchCriteriaInterface $criteria
+     * @return \Magento\Framework\Api\SearchResultsInterface|mixed
+     */
     public function getList(\Magento\Framework\Api\SearchCriteriaInterface $criteria)
     {
         $collection = $this->newsCollectionFactory->create();
@@ -68,6 +113,11 @@ class NewsRepository implements NewsRepositoryInterface
         return $searchResults;
     }
 
+    /**
+     * @param News $news
+     * @return bool|mixed
+     * @throws CouldNotDeleteException
+     */
     public function delete(News $news)
     {
         try {
@@ -81,11 +131,16 @@ class NewsRepository implements NewsRepositoryInterface
         return true;
     }
 
+    /**
+     * @param int $id
+     * @return bool|mixed
+     * @throws CouldNotDeleteException
+     * @throws NoSuchEntityException
+     */
     public function deleteById(int $id)
     {
         return $this->delete($this->getById($id));
     }
-
 }
 
 

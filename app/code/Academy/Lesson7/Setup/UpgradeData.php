@@ -1,4 +1,5 @@
 <?php
+
 namespace Academy\Lesson7\Setup;
 
 use Magento\Eav\Setup\EavSetupFactory;
@@ -8,6 +9,9 @@ use Magento\Framework\Setup\UpgradeDataInterface;
 
 class UpgradeData implements UpgradeDataInterface
 {
+    /**
+     * @var EavSetupFactory
+     */
     private $eavSetupFactory;
 
     public function __construct(EavSetupFactory $eavSetupFactory)
@@ -15,6 +19,10 @@ class UpgradeData implements UpgradeDataInterface
         $this->eavSetupFactory = $eavSetupFactory;
     }
 
+    /**
+     * @param ModuleDataSetupInterface $setup
+     * @param ModuleContextInterface $context
+     */
     public function upgrade(
         ModuleDataSetupInterface $setup,
         ModuleContextInterface $context
