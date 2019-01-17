@@ -1,0 +1,14 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
+    <preference
+            for="Magento\CatalogSearch\Model\ResourceModel\Fulltext\Collection"
+            type="Academy\Lesson8\Model\ResourceModel\Fulltext\Collection" />
+
+    <type name="Magento\Quote\Model\Quote">
+        <plugin name="restrict_adding_to_cart_under_min_price" type="Academy\Lesson8\Plugin\Model\QuotePlugin" sortOrder="1" disabled="false"/>
+    </type>
+
+    <type name="Magento\Customer\Model\AccountManagement">
+        <plugin name="registration_confirmation_email" type="Academy\Lesson8\Plugin\Customer\Model\AccountManagementPlugin" sortOrder="1" disabled="false"/>
+    </type>
+</config>
