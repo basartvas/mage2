@@ -6,8 +6,11 @@ class Collection extends \Magento\CatalogSearch\Model\ResourceModel\Fulltext\Col
 {
     protected function _renderFiltersBefore()
     {
-        /*$this->scopeConfig->ge*/
-        $this->addFieldToFilter('price', ['from'=>46]);
+        $minPrice = $this->_scopeConfig->getValue(
+            'catalog/price/minimal',
+            \Magento\Store\Model\ScopeInterface::SCOPE_STORE
+        );
+        $this->addFieldToFilter('price', ['from'=>"$minPrice"]);
         return parent::_renderFiltersBefore();
     }
 }

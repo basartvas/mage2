@@ -9,7 +9,7 @@ use Magento\Store\Model\ScopeInterface;
 
 class EmailNotificationPlugin
 {
-    const XML_PATH_IS_CONFIRM = 'email_settings\registration\send';
+    const XML_PATH_IS_CONFIRM = 'email_settings/registration/send';
     const NEW_ACCOUNT_EMAIL_REGISTERED = 'customer/create_account/email_template';
 
     protected $scopeConfigInterface;
