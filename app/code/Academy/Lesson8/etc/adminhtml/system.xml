@@ -15,5 +15,13 @@
                 </field>
             </group>
         </section>
+        <section id="catalog">
+            <group id="price">
+                <field id="minimal" translate="label comment" type="text" sortOrder="1" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Min Price</label>
+                    <comment><![CDATA[Products below this price will not appear on Storefront.]]></comment>
+                </field>
+            </group>
+        </section>
     </system>
 </config>
