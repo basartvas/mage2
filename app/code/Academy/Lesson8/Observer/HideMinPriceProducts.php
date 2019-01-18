@@ -33,7 +33,7 @@ class HideMinPriceProducts implements \Magento\Framework\Event\ObserverInterface
     public function execute(
         \Magento\Framework\Event\Observer $observer
     ) {
-        $minPrice = $this->_scopeConfig->getValue(
+        $minPrice = $this->scopeConfigInterface->getValue(
             'catalog/price/minimal',
             ScopeInterface::SCOPE_STORE
         );
