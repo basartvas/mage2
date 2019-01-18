@@ -8,7 +8,7 @@
         <plugin name="restrict_adding_to_cart_under_min_price" type="Academy\Lesson8\Plugin\Model\QuotePlugin" sortOrder="1" disabled="false"/>
     </type>
 
-    <type name="Magento\Customer\Model\AccountManagement">
-        <plugin name="registration_confirmation_email" type="Academy\Lesson8\Plugin\Customer\Model\AccountManagementPlugin" sortOrder="1" disabled="false"/>
+    <type name="Magento\Customer\Model\EmailNotification">
+        <plugin name="disable_registration_email" type="Academy\Lesson8\Plugin\Customer\Model\EmailNotificationPlugin" sortOrder="1" disabled="false"/>
     </type>
 </config>
