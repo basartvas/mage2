@@ -10,14 +10,44 @@ use Magento\Framework\App\Response\RedirectInterface;
 use Magento\Framework\App\Config\ScopeConfigInterface;
 use Magento\Store\Model\ScopeInterface;
 
+/**
+ * Class HideMinPriceProducts
+ * @package Academy\Lesson8\Observer
+ */
 class HideMinPriceProducts implements \Magento\Framework\Event\ObserverInterface
 {
+    /**
+     * @var ProductRepositoryInterface
+     */
     protected $productRepository;
+
+    /**
+     * @var
+     */
     protected $page;
+
+    /**
+     * @var ActionFlag
+     */
     protected $actionFlag;
+
+    /**
+     * @var RedirectInterface
+     */
     protected $redirect;
+
+    /**
+     * @var ScopeConfigInterface
+     */
     protected $scopeConfigInterface;
 
+    /**
+     * HideMinPriceProducts constructor.
+     * @param ProductRepositoryInterface $productRepository
+     * @param ActionFlag $actionFlag
+     * @param RedirectInterface $redirect
+     * @param ScopeConfigInterface $scopeConfigInterface
+     */
     public function __construct(
         ProductRepositoryInterface $productRepository,
         ActionFlag $actionFlag,
@@ -30,6 +60,11 @@ class HideMinPriceProducts implements \Magento\Framework\Event\ObserverInterface
         $this->scopeConfigInterface = $scopeConfigInterface;
     }
 
+    /**
+     * @param \Magento\Framework\Event\Observer $observer
+     * @return $this|void
+     * @throws \Magento\Framework\Exception\NoSuchEntityException
+     */
     public function execute(
         \Magento\Framework\Event\Observer $observer
     ) {

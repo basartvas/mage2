@@ -7,16 +7,31 @@ use Magento\Framework\Setup\ModuleContextInterface;
 use Magento\Framework\Setup\UpgradeDataInterface;
 use Magento\Framework\Setup\ModuleDataSetupInterface;
 
+/**
+ * Class UpgradeData
+ * @package Academy\Lesson8\Setup
+ */
 class UpgradeData implements UpgradeDataInterface
 {
+    /**
+     * @var EavSetupFactory
+     */
     private $eavSetupFactory;
 
+    /**
+     * UpgradeData constructor.
+     * @param EavSetupFactory $eavSetupFactory
+     */
     public function __construct(
         EavSetupFactory $eavSetupFactory
     ) {
         $this->eavSetupFactory = $eavSetupFactory;
     }
 
+    /**
+     * @param ModuleDataSetupInterface $setup
+     * @param ModuleContextInterface $context
+     */
     public function upgrade(
         ModuleDataSetupInterface $setup,
         ModuleContextInterface $context

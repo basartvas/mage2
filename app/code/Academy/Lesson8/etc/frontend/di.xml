@@ -8,20 +8,20 @@
                 name="academy_lesson7_quoteplugin"
                 type="\Academy\Lesson8\Plugin\Model\QuotePlugin"
                 sortOrder="1"
-                disabled="false"/>
+                disabled="false" />
     </type>
     <type name="\Magento\Customer\Model\EmailNotification">
         <plugin
                 name="academy_lesson7_emailnotificationplugin"
                 type="\Academy\Lesson8\Plugin\Customer\Model\EmailNotificationPlugin"
                 sortOrder="1"
-                disabled="false"/>
+                disabled="false" />
     </type>
     <type name="\Magento\Customer\Controller\Account\LoginPost">
         <plugin
                 name="academy_lesson7_loginpostplugin"
                 type="\Academy\Lesson8\Plugin\Controller\Account\LoginPostPlugin"
                 sortOrder="1"
-                disabled="false"/>
+                disabled="false" />
     </type>
 </config>

@@ -4,16 +4,29 @@ namespace Academy\Lesson8\Plugin\Model;
 
 use Magento\Quote\Model\Quote;
 use Magento\Framework\App\Config\ScopeConfigInterface;
-    
-class QuotePlugin
 
+/**
+ * Class QuotePlugin
+ * @package Academy\Lesson8\Plugin\Model
+ */
+class QuotePlugin
 {
+    /**
+     * @var ScopeConfigInterface
+     */
     protected $scopeConfig;
 
+    /**
+     * QuotePlugin constructor.
+     * @param ScopeConfigInterface $scopeConfig
+     */
     public function __construct(ScopeConfigInterface $scopeConfig) {
         $this->scopeConfig = $scopeConfig;
     }
 
+    /**
+     * @return mixed
+     */
     protected function getMinPrice()
     {
         return $this->scopeConfig->getValue(
@@ -22,6 +35,14 @@ class QuotePlugin
         );
     }
 
+    /**
+     * @param Quote $subject
+     * @param \Magento\Catalog\Model\Product $product
+     * @param null $request
+     * @param string $processMode
+     * @return array
+     * @throws \Magento\Framework\Exception\LocalizedException
+     */
     public function beforeAddProduct(
         Quote $subject,
         \Magento\Catalog\Model\Product $product,

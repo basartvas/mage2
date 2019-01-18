@@ -7,19 +7,33 @@ use Magento\Customer\Api\Data\CustomerInterface;
 use Magento\Framework\App\Config\ScopeConfigInterface;
 use Magento\Store\Model\ScopeInterface;
 
+/**
+ * Class EmailNotificationPlugin
+ * @package Academy\Lesson8\Plugin\Customer\Model
+ */
 class EmailNotificationPlugin
 {
     const XML_PATH_IS_CONFIRM = 'email_settings/registration/send';
     const NEW_ACCOUNT_EMAIL_REGISTERED = 'customer/create_account/email_template';
 
+    /**
+     * @var ScopeConfigInterface
+     */
     protected $scopeConfigInterface;
 
+    /**
+     * EmailNotificationPlugin constructor.
+     * @param ScopeConfigInterface $scopeConfigInterface
+     */
     public function __construct(
         ScopeConfigInterface $scopeConfigInterface
     ) {
         $this->scopeConfigInterface = $scopeConfigInterface;
     }
 
+    /**
+     * @return bool
+     */
     protected function isConfirmationRequired()
     {
         return (bool)$this->scopeConfigInterface->getValue(
@@ -28,6 +42,15 @@ class EmailNotificationPlugin
         );
     }
 
+    /**
+     * @param EmailNotification $subject
+     * @param callable $proceed
+     * @param CustomerInterface $customer
+     * @param string $type
+     * @param string $backUrl
+     * @param int $storeId
+     * @param null $sendemailStoreId
+     */
     public function aroundNewAccount(
         EmailNotification $subject,
         callable $proceed,
