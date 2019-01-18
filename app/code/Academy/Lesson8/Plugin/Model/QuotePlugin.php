@@ -28,7 +28,7 @@ class QuotePlugin
         $request = null,
         $processMode = \Magento\Catalog\Model\Product\Type\AbstractType::PROCESS_MODE_FULL
     ) {
-        if ($product->getPrice() < $this->getMinPrice()) {
+        if ($product->getTypeId() == 'simple' && $product->getPrice() < $this->getMinPrice()) {
             throw new \Magento\Framework\Exception\LocalizedException(
                 __('Product that you are trying to add is not available.')
             );

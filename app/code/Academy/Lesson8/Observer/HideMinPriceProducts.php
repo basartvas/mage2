@@ -38,8 +38,10 @@ class HideMinPriceProducts implements \Magento\Framework\Event\ObserverInterface
             ScopeInterface::SCOPE_STORE
         );
         $id = $observer->getEvent()->getRequest()->getParam('id');
-        $price = $this->productRepository->getById($id)->getPrice();
-        if($price < $minPrice) {
+        $product = $this->productRepository->getById($id);
+        $price = $product->getPrice();
+        $typeId = $product->getTypeId();
+        if($typeId == 'simple' && $price < $minPrice) {
             $controller = $observer->getControllerAction();
             $this->actionFlag->set('', Action::FLAG_NO_DISPATCH, true);
             $this->redirect->redirect($controller->getResponse(), Page::NOROUTE_PAGE_ID);
