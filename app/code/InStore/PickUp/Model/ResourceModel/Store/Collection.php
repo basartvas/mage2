@@ -1,0 +1,18 @@
+<?php
+
+namespace InStore\PickUp\Model\ResourceModel\Store;
+
+use Magento\Framework\Model\ResourceModel\Db\Collection\AbstractCollection;
+
+class Collection extends AbstractCollection
+{
+
+    protected $_idFieldName = 'pickup_store_id';
+    protected function _construct()
+    {
+        $this->_init(
+            \InStore\PickUp\Model\Store::class,
+            \InStore\PickUp\Model\ResourceModel\Store::class
+        );
+    }
+}
