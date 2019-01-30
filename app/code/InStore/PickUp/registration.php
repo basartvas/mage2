@@ -2,6 +2,6 @@
 use Magento\Framework\Component\ComponentRegistrar;
 ComponentRegistrar::register(
     ComponentRegistrar::MODULE,
-    'Academy_UpdateName',
+    'InStore_PickUp',
     __DIR__
 );
