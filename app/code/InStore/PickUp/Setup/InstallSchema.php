@@ -14,8 +14,8 @@ class InstallSchema implements InstallSchemaInterface
     ) {
         $installer = $setup;
         $installer->startSetup();
-        if (!$installer->tableExists('pickup_stores')) {
-            $table = $installer->getConnection()->newTable($installer->getTable('pickup_stores'));
+        if (!$installer->tableExists('pickup_store')) {
+            $table = $installer->getConnection()->newTable($installer->getTable('pickup_store'));
             $table->addColumn(
                 'pickup_store_id',
                 Table::TYPE_INTEGER,
@@ -85,7 +85,7 @@ class InstallSchema implements InstallSchemaInterface
                     'Is Active'
                 )
                 ->addColumn(
-                    'mage_store_id',
+                    'store_id',
                     Table::TYPE_INTEGER,
                     null,
                     [
@@ -93,12 +93,24 @@ class InstallSchema implements InstallSchemaInterface
                     ],
                     'Magento Store Id'
                 )
-                ->setComment('News');
+                ->addForeignKey(
+                    $installer->getFkName(
+                        'pickup_store',
+                        'store_id',
+                        'store',
+                        'store_id'
+                    ),
+                    'store_id',
+                    $installer->getTable('store'),
+                    'store_id',
+                    \Magento\Framework\DB\Ddl\Table::ACTION_CASCADE
+                )
+                ->setComment('PickUp Stores');
             $installer->getConnection()->createTable($table);
 
-            $table = $installer->getConnection()->newTable($installer->getTable('pickup_stores'));
+            $table = $installer->getConnection()->newTable($installer->getTable('product_in_store'));
             $table->addColumn(
-                'record_id',
+                'product_id',
                 Table::TYPE_INTEGER,
                 null,
                 [
@@ -107,17 +119,17 @@ class InstallSchema implements InstallSchemaInterface
                     'auto_increment' => true,
                     'unsigned' => true
                 ],
-                'Record Id'
+                'Product in Store Id'
             )
                 ->addColumn(
-                    'product_id',
+                    'sku',
                     Table::TYPE_INTEGER,
                     null,
                     [
                         'nullable' => false,
                         'unsigned' => true
                     ],
-                    'Product Id'
+                    'Product SKU'
                 )
                 ->addColumn(
                     'pickup_store_id',
@@ -159,7 +171,31 @@ class InstallSchema implements InstallSchemaInterface
                     ],
                     'Update Time'
                 )
-                ->setComment('News');
+                ->addForeignKey(
+                    $installer->getFkName(
+                        'products_in_store',
+                        'sku',
+                        'catalog_product_entity',
+                        'sku'
+                    ),
+                    'sku',
+                    $installer->getTable('catalog_product_entity'),
+                    'sku',
+                    \Magento\Framework\DB\Ddl\Table::ACTION_CASCADE
+                )
+                ->addForeignKey(
+                    $installer->getFkName(
+                        'products_in_store',
+                        'pickup_store_id',
+                        'pickup_store',
+                        'pickup_store_id'
+                    ),
+                    'pickup_store_id',
+                    $installer->getTable('pickup_store'),
+                    'pickup_store_id',
+                    \Magento\Framework\DB\Ddl\Table::ACTION_CASCADE
+                )
+                ->setComment('Products in PickUp Stores');
             $installer->getConnection()->createTable($table);
         }
         $installer->endSetup();
