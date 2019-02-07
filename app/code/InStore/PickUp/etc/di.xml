@@ -2,4 +2,19 @@
 <config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
     <preference for="InStore\PickUp\Api\StoreRepositoryInterface" type="InStore\PickUp\Model\StoreRepository"/>
     <preference for="InStore\PickUp\Api\Data\StoreInterface" type="InStore\PickUp\Model\Store"/>
+    <preference for="InStore\PickUp\Api\ProductRepositoryInterface" type="InStore\PickUp\Model\ProductRepository"/>
+    <preference for="InStore\PickUp\Api\Data\ProductInterface" type="InStore\PickUp\Model\Product"/>
+    <type name="Magento\Framework\View\Element\UiComponent\DataProvider\CollectionFactory">
+        <arguments>
+            <argument name="collections" xsi:type="array">
+                <item name="instore_pickup_store_listing_data_source" xsi:type="string">InStore\PickUp\Model\ResourceModel\Store\Grid\Collection</item>
+            </argument>
+        </arguments>
+    </type>
+    <virtualType name="InStore\PickUp\Model\ResourceModel\Store\Grid\Collection" type="Magento\Framework\View\Element\UiComponent\DataProvider\SearchResult">
+        <arguments>
+            <argument name="mainTable" xsi:type="string">pickup_store</argument>
+            <argument name="resourceModel" xsi:type="string">InStore\PickUp\Model\ResourceModel\Store</argument>
+        </arguments>
+    </virtualType>
 </config>
