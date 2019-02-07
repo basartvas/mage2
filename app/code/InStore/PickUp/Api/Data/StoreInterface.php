@@ -13,7 +13,7 @@ interface StoreInterface
      * @param int $id
      * @return void
      */
-    public function setPickupStoreId($id);
+    public function setPickupStoreId(int $id);
 
     /**
      * @return string
@@ -24,7 +24,7 @@ interface StoreInterface
      * @param string $storeName
      * @return void
      */
-    public function setStoreName($storeName);
+    public function setStoreName(string $storeName);
 
     /**
      * @return string
@@ -35,7 +35,7 @@ interface StoreInterface
      * @param string $storeAddress
      * @return void
      */
-    public function setStoreAddress($storeAddress);
+    public function setStoreAddress(string $storeAddress);
 
     /**
      * @return string
@@ -46,7 +46,7 @@ interface StoreInterface
      * @param string $storeContacts
      * @return void
      */
-    public function setStoreContacts($storeContacts);
+    public function setStoreContacts(string $storeContacts);
 
     /**
      * @return string
@@ -57,7 +57,7 @@ interface StoreInterface
      * @param string $stamp
      * @return void
      */
-    public function setCreationTime($stamp);
+    public function setCreationTime(string $stamp);
 
     /**
      * @return string
@@ -68,7 +68,7 @@ interface StoreInterface
      * @param string $stamp
      * @return void
      */
-    public function setUpdateTime($stamp);
+    public function setUpdateTime(string $stamp);
 
     /**
      * @return bool
@@ -79,7 +79,7 @@ interface StoreInterface
      * @param bool $flag
      * @return void
      */
-    public function setIsActive($flag);
+    public function setIsActive(bool $flag);
 
     /**
      * @return int
@@ -90,5 +90,5 @@ interface StoreInterface
      * @param int $id
      * @return void
      */
-    public function setStoreId($id);
+    public function setStoreId(int $id);
 }

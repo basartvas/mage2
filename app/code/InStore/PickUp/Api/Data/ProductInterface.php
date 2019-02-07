@@ -13,7 +13,7 @@ interface ProductInterface
      * @param int $id
      * @return void
      */
-    public function setProductId($id);
+    public function setProductId(int $id);
 
     /**
      * @return string
@@ -24,7 +24,7 @@ interface ProductInterface
      * @param string $sku
      * @return void
      */
-    public function setSku($sku);
+    public function setSku(string $sku);
 
     /**
      * @return int
@@ -35,7 +35,7 @@ interface ProductInterface
      * @param int $storeId
      * @return void
      */
-    public function setPickupStoreId($storeId);
+    public function setPickupStoreId(int $storeId);
 
     /**
      * @return int
@@ -46,7 +46,7 @@ interface ProductInterface
      * @param int $qty
      * @return void
      */
-    public function setQtyInStore($qty);
+    public function setQtyInStore(int $qty);
 
     /**
      * @return string
@@ -57,7 +57,7 @@ interface ProductInterface
      * @param string $stamp
      * @return void
      */
-    public function setCreationTime($stamp);
+    public function setCreationTime(string $stamp);
 
     /**
      * @return string
@@ -68,5 +68,5 @@ interface ProductInterface
      * @param string $stamp
      * @return void
      */
-    public function setUpdateTime($stamp);
+    public function setUpdateTime(string $stamp);
 }

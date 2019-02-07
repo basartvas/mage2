@@ -16,19 +16,21 @@ interface StoreRepositoryInterface
 
     /**
      * @param \InStore\PickUp\Api\Data\StoreInterface $store
-     * @return \InStore\PickUp\Api\Data\StoreInterface
+     * @return bool true on success
+     * @throws \Magento\Framework\Exception\CouldNotSaveException
      */
     function save(StoreInterface $store);
 
     /**
      * @param \InStore\PickUp\Api\Data\StoreInterface $store
-     * @return void
+     * @return bool true on success
+     * @throws \Magento\Framework\Exception\CouldNotDeleteException
      */
     function delete(StoreInterface $store);
 
     /**
      * @param \Magento\Framework\Api\SearchCriteriaInterface $criteria
-     * @return \InStore\PickUp\Api\Data\StoreSearchResultInterface
+     * @return \Magento\Framework\Api\SearchResultsInterface
      */
     function getList(SearchCriteriaInterface $criteria);
 }

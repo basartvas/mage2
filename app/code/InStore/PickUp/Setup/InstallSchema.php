@@ -15,19 +15,19 @@ class InstallSchema implements InstallSchemaInterface
         $installer = $setup;
         $installer->startSetup();
         if (!$installer->tableExists('pickup_store')) {
-            $table = $installer->getConnection()->newTable($installer->getTable('pickup_store'));
-            $table->addColumn(
-                'pickup_store_id',
-                Table::TYPE_INTEGER,
-                null,
-                [
-                    'nullable' => false,
-                    'primary' => true,
-                    'auto_increment' => true,
-                    'unsigned' => true
-                ],
-                'PickUp Store Id'
-            )
+            $table = $installer->getConnection()->newTable($installer->getTable('pickup_store'))
+                ->addColumn(
+                    'pickup_store_id',
+                    Table::TYPE_INTEGER,
+                    null,
+                    [
+                        'nullable' => false,
+                        'primary' => true,
+                        'auto_increment' => true,
+                        'unsigned' => true
+                    ],
+                    'PickUp Store Id'
+                )
                 ->addColumn(
                     'store_name',
                     Table::TYPE_TEXT,
@@ -61,7 +61,7 @@ class InstallSchema implements InstallSchemaInterface
                     null,
                     [
                         'nullable' => false,
-                        'default' =>Table::TIMESTAMP_INIT
+                        'default' => Table::TIMESTAMP_INIT
                     ],
                     'Creation Time'
                 )
@@ -71,7 +71,7 @@ class InstallSchema implements InstallSchemaInterface
                     null,
                     [
                         'nullable' => false,
-                        'default' =>Table::TIMESTAMP_INIT_UPDATE
+                        'default' => Table::TIMESTAMP_INIT_UPDATE
                     ],
                     'Update Time'
                 )
@@ -86,9 +86,10 @@ class InstallSchema implements InstallSchemaInterface
                 )
                 ->addColumn(
                     'store_id',
-                    Table::TYPE_INTEGER,
+                    Table::TYPE_SMALLINT,
                     null,
                     [
+                        'unsigned' => true,
                         'nullable' => false
                     ],
                     'Magento Store Id'
@@ -107,7 +108,9 @@ class InstallSchema implements InstallSchemaInterface
                 )
                 ->setComment('PickUp Stores');
             $installer->getConnection()->createTable($table);
+        }
 
+        if (!$installer->tableExists('product_in_store')) {
             $table = $installer->getConnection()->newTable($installer->getTable('product_in_store'));
             $table->addColumn(
                 'product_id',
@@ -123,11 +126,11 @@ class InstallSchema implements InstallSchemaInterface
             )
                 ->addColumn(
                     'sku',
-                    Table::TYPE_INTEGER,
-                    null,
+                    Table::TYPE_TEXT,
+                    64,
                     [
-                        'nullable' => false,
-                        'unsigned' => true
+                        'nullable' => true,
+                        'default' => NULL
                     ],
                     'Product SKU'
                 )

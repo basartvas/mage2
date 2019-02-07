@@ -17,18 +17,20 @@ interface ProductRepositoryInterface
     /**
      * @param \InStore\PickUp\Api\Data\ProductInterface $product
      * @return \InStore\PickUp\Api\Data\ProductInterface
+     * @throws \Magento\Framework\Exception\CouldNotSaveException
      */
     function save(ProductInterface $product);
 
     /**
      * @param \InStore\PickUp\Api\Data\ProductInterface $product
      * @return void
+     * @throws \Magento\Framework\Exception\CouldNotDeleteException
      */
     function delete(ProductInterface $product);
 
     /**
      * @param \Magento\Framework\Api\SearchCriteriaInterface $criteria
-     * @return \InStore\PickUp\Api\Data\ProductSearchResultInterface
+     * @return \Magento\Framework\Api\SearchResultsInterface
      */
     function getList(SearchCriteriaInterface $criteria);
 }
