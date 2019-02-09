@@ -7,7 +7,7 @@
     <type name="Magento\Framework\View\Element\UiComponent\DataProvider\CollectionFactory">
         <arguments>
             <argument name="collections" xsi:type="array">
-                <item name="instore_pickup_store_listing_data_source" xsi:type="string">InStore\PickUp\Model\ResourceModel\Store\Grid\Collection</item>
+                <item name="pickup_stores_listing_data_source" xsi:type="string">InStore\PickUp\Model\ResourceModel\Store\Grid\Collection</item>
             </argument>
         </arguments>
     </type>

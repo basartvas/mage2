@@ -106,6 +106,9 @@ class InstallSchema implements InstallSchemaInterface
                     'store_id',
                     \Magento\Framework\DB\Ddl\Table::ACTION_CASCADE
                 )
+                ->addIndex(
+                    $installer->getIdxName('pickup_store', ['pickup_store_id']),
+                    ['pickup_store_id'])
                 ->setComment('PickUp Stores');
             $installer->getConnection()->createTable($table);
         }
