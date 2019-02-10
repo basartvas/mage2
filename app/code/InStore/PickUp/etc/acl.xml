@@ -2,8 +2,7 @@
     <acl>
         <resources>
             <resource id="Magento_Backend::admin">
-                <resource id="InStore_PickUp::pickup_stores" title="Pickup Stores Management" translate="title" sortOrder="30">
-                </resource>
+                <resource id="InStore_PickUp::pickup_stores" title="Pickup Stores Management" translate="title" sortOrder="30" />
             </resource>
         </resources>
     </acl>

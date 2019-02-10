@@ -64,11 +64,32 @@
         </massaction>
     </listingToolbar>
     <columns name="pickup_stores_listing_columns">
+        <argument name="data" xsi:type="array">
+            <item name="config" xsi:type="array">
+                <item name="editorConfig" xsi:type="array">
+                    <item name="selectProvider" xsi:type="string">pickup_stores_listing.pickup_stores_listing.pickup_stores_listing_columns.ids</item>
+                    <item name="enabled" xsi:type="boolean">true</item>
+                    <item name="indexField" xsi:type="string">pickup_store_id</item>
+                    <item name="clientConfig" xsi:type="array">
+                        <item name="saveUrl" xsi:type="url" path="*/*/inlineEdit"/>
+                        <item name="validateBeforeSave" xsi:type="boolean">false</item>
+                    </item>
+                </item>
+                <item name="childDefaults" xsi:type="array">
+                    <item name="fieldAction" xsi:type="array">
+                        <item name="provider" xsi:type="string">pickup_stores_listing.pickup_stores_listing.pickup_stores_listing_columns_editor</item>
+                        <item name="target" xsi:type="string">startEdit</item>
+                        <item name="params" xsi:type="array">
+                            <item name="0" xsi:type="string">${ $.$data.rowIndex }</item>
+                            <item name="1" xsi:type="boolean">true</item>
+                        </item>
+                    </item>
+                </item>
+            </item>
+        </argument>
         <selectionsColumn name="ids">
             <argument name="data" xsi:type="array">
                 <item name="config" xsi:type="array">
-                    <item name="resizeEnabled" xsi:type="boolean">false</item>
-                    <item name="resizeDefaultWidth" xsi:type="string">55</item>
                     <item name="indexField" xsi:type="string">pickup_store_id</item>
                 </item>
             </argument>
@@ -120,7 +141,7 @@
                             <item name="required-entry" xsi:type="boolean">true</item>
                         </item>
                     </item>
-                    <item name="label" xsi:type="string" translate="true">PickUp Store Contacts'</item>
+                    <item name="label" xsi:type="string" translate="true">PickUp Store Contacts</item>
                 </item>
             </argument>
         </column>
@@ -143,6 +164,24 @@
                     <item name="label" xsi:type="string" translate="true">Modified</item>
                 </item>
             </argument>
+        </column>
+        <column name="is_active" component="Magento_Ui/js/grid/columns/select">
+        <settings>
+            <options class="InStore\PickUp\Model\Store\Source\IsActive"/>
+            <filter>select</filter>
+            <editor>
+                <editorType>select</editorType>
+            </editor>
+            <dataType>select</dataType>
+            <label translate="true">Status</label>
+        </settings>
+    </column>
+        <column name="store_id" class="Magento\Store\Ui\Component\Listing\Column\Store">
+            <settings>
+                <label translate="true">Store View</label>
+                <bodyTmpl>ui/grid/cells/html</bodyTmpl>
+                <sortable>false</sortable>
+            </settings>
         </column>
     </columns>
 </listing>

@@ -30,6 +30,12 @@ class Store extends AbstractModel implements StoreInterface, IdentityInterface
     protected $_eventPrefix = 'instore_pickup_store';
 
     /**
+     * Store's statuses
+     */
+    const STATUS_ENABLED = 1;
+    const STATUS_DISABLED = 0;
+
+    /**
      * return void
      */
     protected function _construct()
@@ -179,5 +185,15 @@ class Store extends AbstractModel implements StoreInterface, IdentityInterface
     public function setStoreId(int $id)
     {
         $this->setData('store_id', $id);
+    }
+
+    /**
+     * Prepare store's statuses.
+     *
+     * @return array
+     */
+    public function getAvailableStatuses()
+    {
+        return [self::STATUS_ENABLED => __('Enabled'), self::STATUS_DISABLED => __('Disabled')];
     }
 }

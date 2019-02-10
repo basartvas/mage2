@@ -28,6 +28,9 @@ class InstallSchema implements InstallSchemaInterface
                     ],
                     'PickUp Store Id'
                 )
+                ->addIndex(
+                    $installer->getIdxName('pickup_store', ['pickup_store_id']),
+                    ['pickup_store_id'])
                 ->addColumn(
                     'store_name',
                     Table::TYPE_TEXT,
@@ -37,6 +40,9 @@ class InstallSchema implements InstallSchemaInterface
                     ],
                     'PickUp Store Name'
                 )
+                ->addIndex(
+                    $installer->getIdxName('pickup_store', ['store_name']),
+                    ['store_name'])
                 ->addColumn(
                     'store_address',
                     Table::TYPE_TEXT,
@@ -92,8 +98,11 @@ class InstallSchema implements InstallSchemaInterface
                         'unsigned' => true,
                         'nullable' => false
                     ],
-                    'Magento Store Id'
+                    'Store View'
                 )
+                ->addIndex(
+                    $installer->getIdxName('cms_page_store', ['store_id']),
+                    ['store_id'])
                 ->addForeignKey(
                     $installer->getFkName(
                         'pickup_store',
@@ -106,9 +115,6 @@ class InstallSchema implements InstallSchemaInterface
                     'store_id',
                     \Magento\Framework\DB\Ddl\Table::ACTION_CASCADE
                 )
-                ->addIndex(
-                    $installer->getIdxName('pickup_store', ['pickup_store_id']),
-                    ['pickup_store_id'])
                 ->setComment('PickUp Stores');
             $installer->getConnection()->createTable($table);
         }
