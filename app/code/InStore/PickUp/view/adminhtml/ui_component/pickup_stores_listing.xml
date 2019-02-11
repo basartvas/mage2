@@ -1,181 +1,188 @@
+<?xml version="1.0" encoding="UTF-8"?>
 <listing xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Ui:etc/ui_configuration.xsd">
     <argument name="data" xsi:type="array">
         <item name="js_config" xsi:type="array">
             <item name="provider" xsi:type="string">pickup_stores_listing.pickup_stores_listing_data_source</item>
-            <item name="deps" xsi:type="string">pickup_stores_listing.pickup_stores_listing_data_source</item>
-        </item>
-        <item name="spinner" xsi:type="string">pickup_stores_listing_columns</item>
-        <item name="buttons" xsi:type="array">
-            <item name="add" xsi:type="array">
-                <item name="name" xsi:type="string">add</item>
-                <item name="label" xsi:type="string" translate="true">Add PickUp Store</item>
-                <item name="class" xsi:type="string">primary</item>
-                <item name="url" xsi:type="string">*/*/new</item>
-            </item>
         </item>
     </argument>
-    <dataSource name="pickup_stores_listing_data_source">
-        <argument name="dataProvider" xsi:type="configurableObject">
-            <argument name="class" xsi:type="string">Magento\Framework\View\Element\UiComponent\DataProvider\DataProvider</argument>
-            <argument name="name" xsi:type="string">pickup_stores_listing_data_source</argument>
-            <argument name="primaryFieldName" xsi:type="string">pickup_store_id</argument>
-            <argument name="requestFieldName" xsi:type="string">pickup_store_id</argument>
-            <argument name="data" xsi:type="array">
-                <item name="config" xsi:type="array">
-                    <item name="component" xsi:type="string">Magento_Ui/js/grid/provider</item>
-                    <item name="update_url" xsi:type="url" path="mui/index/render"/>
-                    <item name="storageConfig" xsi:type="array">
-                        <item name="indexField" xsi:type="string">pickup_store_id</item>
-                    </item>
-                </item>
-            </argument>
-        </argument>
+    <settings>
+        <buttons>
+            <button name="add">
+                <url path="*/*/new" />
+                <class>primary</class>
+                <label translate="true">Add PickUp Store</label>
+            </button>
+        </buttons>
+        <spinner>pickup_stores_listing_columns</spinner>
+        <deps>
+            <dep>pickup_stores_listing.pickup_stores_listing_data_source</dep>
+        </deps>
+    </settings>
+    <dataSource name="pickup_stores_listing_data_source" component="Magento_Ui/js/grid/provider">
+        <settings>
+            <storageConfig>
+                <param name="indexField" xsi:type="string">pickup_store_id</param>
+            </storageConfig>
+            <updateUrl path="mui/index/render" />
+        </settings>
+        <aclResource>InStore_PickUp::pickup_stores</aclResource>
+        <dataProvider class="Magento\Cms\Ui\Component\DataProvider" name="pickup_stores_listing_data_source">
+            <settings>
+                <requestFieldName>pickup_store_id</requestFieldName>
+                <primaryFieldName>pickup_store_id</primaryFieldName>
+            </settings>
+        </dataProvider>
     </dataSource>
     <listingToolbar name="listing_top">
-        <argument name="data" xsi:type="array">
-            <item name="config" xsi:type="array">
-                <item name="sticky" xsi:type="boolean">true</item>
-            </item>
-        </argument>
+        <settings>
+            <sticky>true</sticky>
+        </settings>
         <bookmark name="bookmarks"/>
         <columnsControls name="columns_controls"/>
         <filterSearch name="fulltext"/>
-        <filters name="listing_filters" />
-        <paging name="listing_paging"/>
+        <filters name="listing_filters">
+            <settings>
+                <templates>
+                    <filters>
+                        <select>
+                            <param name="template" xsi:type="string">ui/grid/filters/elements/ui-select</param>
+                            <param name="component" xsi:type="string">Magento_Ui/js/form/element/ui-select</param>
+                        </select>
+                    </filters>
+                </templates>
+            </settings>
+            <filterSelect name="store_id" provider="${ $.parentName }">
+                <settings>
+                    <captionValue>0</captionValue>
+                    <options class="Magento\Cms\Ui\Component\Listing\Column\Cms\Options"/>
+                    <label translate="true">Store View</label>
+                    <dataScope>store_id</dataScope>
+                    <imports>
+                        <link name="visible">componentType = column, index = ${ $.index }:visible</link>
+                    </imports>
+                </settings>
+            </filterSelect>
+        </filters>
         <massaction name="listing_massaction">
-            <argument name="data" xsi:type="array">
-                <item name="config" xsi:type="array">
-                    <item name="component" xsi:type="string">Magento_Ui/js/grid/tree-massactions</item>
-                </item>
-            </argument>
             <action name="delete">
-                <argument name="data" xsi:type="array">
-                    <item name="config" xsi:type="array">
-                        <item name="type" xsi:type="string">delete</item>
-                        <item name="label" xsi:type="string" translate="true">Delete</item>
-                        <item name="url" xsi:type="url" path="stores/pickup/massDelete"/>
-                        <item name="confirm" xsi:type="array">
-                            <item name="title" xsi:type="string" translate="true">Delete Stores</item>
-                            <item name="message" xsi:type="string" translate="true">Are you sure you wan't to delete selected PickUp Stores?</item>
-                        </item>
-                    </item>
-                </argument>
+                <settings>
+                    <confirm>
+                        <message translate="true">Are you sure you want to delete selected items?</message>
+                        <title translate="true">Delete items</title>
+                    </confirm>
+                    <url path="cms/block/massDelete"/>
+                    <type>delete</type>
+                    <label translate="true">Delete</label>
+                </settings>
+            </action>
+            <action name="edit">
+                <settings>
+                    <callback>
+                        <target>editSelected</target>
+                        <provider>pickup_stores_listing.pickup_stores_listing.pickup_stores_listing_columns_editor</provider>
+                    </callback>
+                    <type>edit</type>
+                    <label translate="true">Edit</label>
+                </settings>
             </action>
         </massaction>
+        <paging name="listing_paging"/>
     </listingToolbar>
     <columns name="pickup_stores_listing_columns">
-        <argument name="data" xsi:type="array">
-            <item name="config" xsi:type="array">
-                <item name="editorConfig" xsi:type="array">
-                    <item name="selectProvider" xsi:type="string">pickup_stores_listing.pickup_stores_listing.pickup_stores_listing_columns.ids</item>
-                    <item name="enabled" xsi:type="boolean">true</item>
-                    <item name="indexField" xsi:type="string">pickup_store_id</item>
-                    <item name="clientConfig" xsi:type="array">
-                        <item name="saveUrl" xsi:type="url" path="*/*/inlineEdit"/>
-                        <item name="validateBeforeSave" xsi:type="boolean">false</item>
+        <settings>
+            <editorConfig>
+                <param name="clientConfig" xsi:type="array">
+                    <item name="saveUrl" xsi:type="url" path="*/*/inlineEdit"/>
+                    <item name="validateBeforeSave" xsi:type="boolean">false</item>
+                </param>
+                <param name="indexField" xsi:type="string">pickup_store_id</param>
+                <param name="enabled" xsi:type="boolean">true</param>
+                <param name="selectProvider" xsi:type="string">pickup_stores_listing.pickup_stores_listing.pickup_stores_listing_columns.ids</param>
+            </editorConfig>
+            <childDefaults>
+                <param name="fieldAction" xsi:type="array">
+                    <item name="provider" xsi:type="string">pickup_stores_listing.pickup_stores_listing.pickup_stores_listing_columns_editor</item>
+                    <item name="target" xsi:type="string">startEdit</item>
+                    <item name="params" xsi:type="array">
+                        <item name="0" xsi:type="string">${ $.$data.rowIndex }</item>
+                        <item name="1" xsi:type="boolean">true</item>
                     </item>
-                </item>
-                <item name="childDefaults" xsi:type="array">
-                    <item name="fieldAction" xsi:type="array">
-                        <item name="provider" xsi:type="string">pickup_stores_listing.pickup_stores_listing.pickup_stores_listing_columns_editor</item>
-                        <item name="target" xsi:type="string">startEdit</item>
-                        <item name="params" xsi:type="array">
-                            <item name="0" xsi:type="string">${ $.$data.rowIndex }</item>
-                            <item name="1" xsi:type="boolean">true</item>
-                        </item>
-                    </item>
-                </item>
-            </item>
-        </argument>
+                </param>
+            </childDefaults>
+        </settings>
         <selectionsColumn name="ids">
-            <argument name="data" xsi:type="array">
-                <item name="config" xsi:type="array">
-                    <item name="indexField" xsi:type="string">pickup_store_id</item>
-                </item>
-            </argument>
+            <settings>
+                <indexField>pickup_store_id</indexField>
+            </settings>
         </selectionsColumn>
         <column name="pickup_store_id">
-            <argument name="data" xsi:type="array">
-                <item name="config" xsi:type="array">
-                    <item name="filter" xsi:type="string">textRange</item>
-                    <item name="sorting" xsi:type="string">asc</item>
-                    <item name="label" xsi:type="string" translate="true">PickUp Store Id</item>
-                </item>
-            </argument>
+            <settings>
+                <filter>textRange</filter>
+                <label translate="true">PickUp Store Id</label>
+                <sorting>asc</sorting>
+            </settings>
         </column>
         <column name="store_name">
-            <argument name="data" xsi:type="array">
-                <item name="config" xsi:type="array">
-                    <item name="filter" xsi:type="string">text</item>
-                    <item name="editor" xsi:type="array">
-                        <item name="editorType" xsi:type="string">text</item>
-                        <item name="validation" xsi:type="array">
-                            <item name="required-entry" xsi:type="boolean">true</item>
-                        </item>
-                    </item>
-                    <item name="label" xsi:type="string" translate="true">PickUp Store Name</item>
-                </item>
-            </argument>
+            <settings>
+                <filter>text</filter>
+                <editor>
+                    <validation>
+                        <rule name="required-entry" xsi:type="boolean">true</rule>
+                    </validation>
+                    <editorType>text</editorType>
+                </editor>
+                <label translate="true">PickUp Store Name</label>
+            </settings>
         </column>
         <column name="store_address">
-            <argument name="data" xsi:type="array">
-                <item name="config" xsi:type="array">
-                    <item name="filter" xsi:type="string">text</item>
-                    <item name="editor" xsi:type="array">
-                        <item name="editorType" xsi:type="string">text</item>
-                        <item name="validation" xsi:type="array">
-                            <item name="required-entry" xsi:type="boolean">true</item>
-                        </item>
-                    </item>
-                    <item name="label" xsi:type="string" translate="true">PickUp Store Address</item>
-                </item>
-            </argument>
+            <settings>
+                <filter>text</filter>
+                <editor>
+                    <validation>
+                        <rule name="required-entry" xsi:type="boolean">true</rule>
+                    </validation>
+                    <editorType>text</editorType>
+                </editor>
+                <label translate="true">PickUp Store Address</label>
+            </settings>
         </column>
         <column name="store_contacts">
-            <argument name="data" xsi:type="array">
-                <item name="config" xsi:type="array">
-                    <item name="filter" xsi:type="string">text</item>
-                    <item name="editor" xsi:type="array">
-                        <item name="editorType" xsi:type="string">text</item>
-                        <item name="validation" xsi:type="array">
-                            <item name="required-entry" xsi:type="boolean">true</item>
-                        </item>
-                    </item>
-                    <item name="label" xsi:type="string" translate="true">PickUp Store Contacts</item>
-                </item>
-            </argument>
+            <settings>
+                <filter>text</filter>
+                <editor>
+                    <validation>
+                        <rule name="required-entry" xsi:type="boolean">true</rule>
+                    </validation>
+                    <editorType>text</editorType>
+                </editor>
+                <label translate="true">PickUp Store Contacts</label>
+            </settings>
         </column>
-        <column name="creation_time" class="Magento\Ui\Component\Listing\Columns\Date">
-            <argument name="data" xsi:type="array">
-                <item name="config" xsi:type="array">
-                    <item name="filter" xsi:type="string">dateRange</item>
-                    <item name="component" xsi:type="string">Magento_Ui/js/grid/columns/date</item>
-                    <item name="dataType" xsi:type="string">date</item>
-                    <item name="label" xsi:type="string" translate="true">Created</item>
-                </item>
-            </argument>
+        <column name="creation_time" class="Magento\Ui\Component\Listing\Columns\Date" component="Magento_Ui/js/grid/columns/date">
+            <settings>
+                <filter>dateRange</filter>
+                <dataType>date</dataType>
+                <label translate="true">Created</label>
+            </settings>
         </column>
-        <column name="update_time" class="Magento\Ui\Component\Listing\Columns\Date">
-            <argument name="data" xsi:type="array">
-                <item name="config" xsi:type="array">
-                    <item name="filter" xsi:type="string">dateRange</item>
-                    <item name="component" xsi:type="string">Magento_Ui/js/grid/columns/date</item>
-                    <item name="dataType" xsi:type="string">date</item>
-                    <item name="label" xsi:type="string" translate="true">Modified</item>
-                </item>
-            </argument>
+        <column name="update_time" class="Magento\Ui\Component\Listing\Columns\Date" component="Magento_Ui/js/grid/columns/date">
+            <settings>
+                <filter>dateRange</filter>
+                <dataType>date</dataType>
+                <label translate="true">Modified</label>
+            </settings>
         </column>
         <column name="is_active" component="Magento_Ui/js/grid/columns/select">
-        <settings>
-            <options class="InStore\PickUp\Model\Store\Source\IsActive"/>
-            <filter>select</filter>
-            <editor>
-                <editorType>select</editorType>
-            </editor>
-            <dataType>select</dataType>
-            <label translate="true">Status</label>
-        </settings>
-    </column>
+            <settings>
+                <options class="InStore\PickUp\Model\Store\Source\IsActive"/>
+                <filter>select</filter>
+                <editor>
+                    <editorType>select</editorType>
+                </editor>
+                <dataType>select</dataType>
+                <label translate="true">Status</label>
+            </settings>
+        </column>
         <column name="store_id" class="Magento\Store\Ui\Component\Listing\Column\Store">
             <settings>
                 <label translate="true">Store View</label>
@@ -183,5 +190,10 @@
                 <sortable>false</sortable>
             </settings>
         </column>
+        <actionsColumn name="actions" class="Magento\Cms\Ui\Component\Listing\Column\BlockActions">
+            <settings>
+                <indexField>pickup_store_id</indexField>
+            </settings>
+        </actionsColumn>
     </columns>
 </listing>

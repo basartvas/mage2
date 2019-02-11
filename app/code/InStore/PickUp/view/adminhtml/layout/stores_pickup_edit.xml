@@ -3,8 +3,8 @@
     <update handle="styles"/>
     <update handle="editor"/>
     <body>
-        <!--<referenceContainer name="content">
+        <referenceContainer name="content">
             <uiComponent name="pickup_stores_form"/>
-        </referenceContainer>-->
+        </referenceContainer>
     </body>
 </page>

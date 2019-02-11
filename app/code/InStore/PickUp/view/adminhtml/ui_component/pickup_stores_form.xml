@@ -8,11 +8,11 @@
     </argument>
     <settings>
         <buttons>
-            <button name="save_and_continue" class="Magento\Cms\Block\Adminhtml\Block\Edit\SaveAndContinueButton"/>
-            <button name="save" class="Magento\Cms\Block\Adminhtml\Block\Edit\SaveButton"/>
-            <button name="reset" class="Magento\Cms\Block\Adminhtml\Block\Edit\ResetButton"/>
-            <button name="delete" class="Magento\Cms\Block\Adminhtml\Block\Edit\DeleteButton"/>
-            <button name="back" class="Magento\Cms\Block\Adminhtml\Block\Edit\BackButton"/>
+            <button name="save_and_continue" class="InStore\PickUp\Block\Adminhtml\Pickup\Edit\SaveAndContinueButton"/>
+            <button name="save" class="InStore\PickUp\Block\Adminhtml\Pickup\Edit\SaveButton"/>
+            <button name="reset" class="InStore\PickUp\Block\Adminhtml\Pickup\Edit\ResetButton"/>
+            <button name="delete" class="InStore\PickUp\Block\Adminhtml\Pickup\Edit\DeleteButton"/>
+            <button name="back" class="InStore\PickUp\Block\Adminhtml\Pickup\Edit\BackButton"/>
         </buttons>
         <namespace>pickup_stores_form</namespace>
         <dataScope>data</dataScope>
@@ -40,7 +40,7 @@
         <settings>
             <label/>
         </settings>
-        <field name="block_id" formElement="input">
+        <field name="pickup_store_id" formElement="input">
             <argument name="data" xsi:type="array">
                 <item name="config" xsi:type="array">
                     <item name="source" xsi:type="string">block</item>
@@ -49,7 +49,7 @@
             <settings>
                 <dataType>text</dataType>
                 <visible>false</visible>
-                <dataScope>block_id</dataScope>
+                <dataScope>pickup_store_id</dataScope>
             </settings>
         </field>
         <field name="is_active" sortOrder="10" formElement="checkbox">
@@ -61,7 +61,7 @@
             </argument>
             <settings>
                 <dataType>boolean</dataType>
-                <label translate="true">Enable Block</label>
+                <label translate="true">Enable Store</label>
                 <dataScope>is_active</dataScope>
             </settings>
             <formElements>
@@ -76,7 +76,7 @@
                 </checkbox>
             </formElements>
         </field>
-        <field name="title" sortOrder="20" formElement="input">
+        <field name="store_name" sortOrder="20" formElement="input">
             <argument name="data" xsi:type="array">
                 <item name="config" xsi:type="array">
                     <item name="source" xsi:type="string">block</item>
@@ -87,11 +87,11 @@
                     <rule name="required-entry" xsi:type="boolean">true</rule>
                 </validation>
                 <dataType>text</dataType>
-                <label translate="true">Block Title</label>
-                <dataScope>title</dataScope>
+                <label translate="true">PickUp Store Name</label>
+                <dataScope>store_name</dataScope>
             </settings>
         </field>
-        <field name="identifier" formElement="input">
+        <field name="store_address" formElement="input">
             <argument name="data" xsi:type="array">
                 <item name="config" xsi:type="array">
                     <item name="source" xsi:type="string">block</item>
@@ -102,8 +102,23 @@
                     <rule name="required-entry" xsi:type="boolean">true</rule>
                 </validation>
                 <dataType>text</dataType>
-                <label translate="true">Identifier</label>
-                <dataScope>identifier</dataScope>
+                <label translate="true">PickUp Store Address</label>
+                <dataScope>store_address</dataScope>
+            </settings>
+        </field>
+        <field name="store_contacts" formElement="input">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="source" xsi:type="string">block</item>
+                </item>
+            </argument>
+            <settings>
+                <validation>
+                    <rule name="required-entry" xsi:type="boolean">true</rule>
+                </validation>
+                <dataType>text</dataType>
+                <label translate="true">PickUp Store Contacts</label>
+                <dataScope>store_contacts</dataScope>
             </settings>
         </field>
         <field name="storeviews" formElement="multiselect">
@@ -127,30 +142,6 @@
                         <options class="Magento\Cms\Ui\Component\Listing\Column\Cms\Options"/>
                     </settings>
                 </multiselect>
-            </formElements>
-        </field>
-        <field name="content" formElement="wysiwyg">
-            <argument name="data" xsi:type="array">
-                <item name="config" xsi:type="array">
-                    <item name="source" xsi:type="string">block</item>
-                </item>
-            </argument>
-            <settings>
-                <additionalClasses>
-                    <class name="admin__field-wide">true</class>
-                </additionalClasses>
-                <validation>
-                    <rule name="required-entry" xsi:type="boolean">true</rule>
-                </validation>
-                <label/>
-                <dataScope>content</dataScope>
-            </settings>
-            <formElements>
-                <wysiwyg>
-                    <settings>
-                        <wysiwyg>true</wysiwyg>
-                    </settings>
-                </wysiwyg>
             </formElements>
         </field>
     </fieldset>
