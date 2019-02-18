@@ -5,9 +5,8 @@ use Magento\Backend\App\Action\Context;
 use Magento\Framework\View\Result\PageFactory;
 use InStore\PickUp\Api\StoreRepositoryInterface as StoreRepository;
 use InStore\PickUp\Model\StoreFactory;
-use Magento\Framework\Exception\NoSuchEntityException;
 
-class Edit extends \Magento\Backend\App\Action
+class Delete extends \Magento\Backend\App\Action
 {
     /**
      * @var \Magento\Framework\View\Result\PageFactory
@@ -42,24 +41,20 @@ class Edit extends \Magento\Backend\App\Action
         parent::__construct($context);
     }
 
-
     public function execute()
     {
         $id = $this->getRequest()->getParam('id');
-        $resultPage = $this->resultPageFactory->create();
-        if($id){
-            try {
-                $store = $this->storeRepository->getById($id);
-            } catch (NoSuchEntityException $e) {
-                $this->messageManager->addErrorMessage(
-                    $e->getMessage()
-                );
-                return $this->resultRedirectFactory->create()->setPath('*/*/');
-            }
-            $resultPage->getConfig()->getTitle()->prepend($store->getStoreName());
-            return $resultPage;
+        try {
+            $store = $this->storeRepository->getById($id);
+            $this->storeRepository->delete($store);
+            $this->messageManager->addSuccessMessage(
+                __('Store was successfully deleted.')
+            );
+            return $this->resultRedirectFactory->create()->setPath('*/*/');
+        } catch (\Exception $e) {
+            $this->messageManager->addErrorMessage(
+                $e->getMessage()
+            );
         }
-        $resultPage->getConfig()->getTitle()->prepend(__('New Store'));
-        return $resultPage;
     }
 }

@@ -31,7 +31,7 @@
         </settings>
         <dataProvider class="InStore\PickUp\Model\Store\DataProvider" name="store_form_data_source">
             <settings>
-                <requestFieldName>pickup_store_id</requestFieldName>
+                <requestFieldName>id</requestFieldName>
                 <primaryFieldName>pickup_store_id</primaryFieldName>
             </settings>
         </dataProvider>

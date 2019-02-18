@@ -3,7 +3,6 @@
 namespace InStore\PickUp\Model\Store;
 
 use InStore\PickUp\Model\ResourceModel\Store\CollectionFactory;
-use Magento\Framework\App\Request\DataPersistorInterface;
 
 /**
  * Class DataProvider
@@ -11,14 +10,9 @@ use Magento\Framework\App\Request\DataPersistorInterface;
 class DataProvider extends \Magento\Ui\DataProvider\AbstractDataProvider
 {
     /**
-     * @var \Magento\Cms\Model\ResourceModel\Block\Collection
+     * @var \InStore\PickUp\Model\ResourceModel\Store\Collection
      */
     protected $collection;
-
-    /**
-     * @var DataPersistorInterface
-     */
-    protected $dataPersistor;
 
     /**
      * @var array
@@ -32,7 +26,6 @@ class DataProvider extends \Magento\Ui\DataProvider\AbstractDataProvider
      * @param string $primaryFieldName
      * @param string $requestFieldName
      * @param CollectionFactory $storeCollectionFactory
-     * @param DataPersistorInterface $dataPersistor
      * @param array $meta
      * @param array $data
      */
@@ -41,12 +34,10 @@ class DataProvider extends \Magento\Ui\DataProvider\AbstractDataProvider
         $primaryFieldName,
         $requestFieldName,
         CollectionFactory $storeCollectionFactory,
-        DataPersistorInterface $dataPersistor,
         array $meta = [],
         array $data = []
     ) {
         $this->collection = $storeCollectionFactory->create();
-        $this->dataPersistor = $dataPersistor;
         parent::__construct($name, $primaryFieldName, $requestFieldName, $meta, $data);
     }
 
@@ -63,17 +54,8 @@ class DataProvider extends \Magento\Ui\DataProvider\AbstractDataProvider
         $items = $this->collection->getItems();
         /** @var \InStore\PickUp\Model\Store $store */
         foreach ($items as $store) {
-            $this->loadedData[$store->getId()] = $store->getData();
+            $this->loadedData[$store->getPickupStoreId()] = $store->getData();
         }
-
-        $data = $this->dataPersistor->get('instore_pickup_store');
-        if (!empty($data)) {
-            $store = $this->collection->getNewEmptyItem();
-            $store->setData($data);
-            $this->loadedData[$store->getId()] = $store->getData();
-            $this->dataPersistor->clear('instore_pickup_store');
-        }
-
         return $this->loadedData;
     }
 }

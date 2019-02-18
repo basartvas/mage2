@@ -40,10 +40,10 @@ class GenericButton
      */
     public function getStoreId()
     {
-        $id = $this->context->getRequest()->getParam('pickup_store_id');
+        $id = $this->context->getRequest()->getParam('id');
         if($id){
             try {
-                return $this->storeRepository->getById($id)->getStoreId();
+                return $this->storeRepository->getById($id)->getPickupStoreId();
             } catch (NoSuchEntityException $e) {
             }
         }

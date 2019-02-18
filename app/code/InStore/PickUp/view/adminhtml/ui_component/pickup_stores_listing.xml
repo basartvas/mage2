@@ -26,7 +26,7 @@
             <updateUrl path="mui/index/render" />
         </settings>
         <aclResource>InStore_PickUp::pickup_stores</aclResource>
-        <dataProvider class="Magento\Cms\Ui\Component\DataProvider" name="pickup_stores_listing_data_source">
+        <dataProvider class="Magento\Framework\View\Element\UiComponent\DataProvider\DataProvider" name="pickup_stores_listing_data_source">
             <settings>
                 <requestFieldName>pickup_store_id</requestFieldName>
                 <primaryFieldName>pickup_store_id</primaryFieldName>
@@ -54,7 +54,7 @@
             <filterSelect name="store_id" provider="${ $.parentName }">
                 <settings>
                     <captionValue>0</captionValue>
-                    <options class="Magento\Cms\Ui\Component\Listing\Column\Cms\Options"/>
+                    <options class="Magento\Store\Ui\Component\Listing\Column\Store\Options"/>
                     <label translate="true">Store View</label>
                     <dataScope>store_id</dataScope>
                     <imports>
@@ -190,7 +190,7 @@
                 <sortable>false</sortable>
             </settings>
         </column>
-        <actionsColumn name="actions" class="Magento\Cms\Ui\Component\Listing\Column\BlockActions">
+        <actionsColumn name="actions" class="InStore\PickUp\Ui\Component\Listing\Column\ViewAction">
             <settings>
                 <indexField>pickup_store_id</indexField>
             </settings>
