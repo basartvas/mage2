@@ -101,7 +101,7 @@ class InstallSchema implements InstallSchemaInterface
                     'Store View'
                 )
                 ->addIndex(
-                    $installer->getIdxName('cms_page_store', ['store_id']),
+                    $installer->getIdxName('store_id', ['store_id']),
                     ['store_id'])
                 ->addForeignKey(
                     $installer->getFkName(

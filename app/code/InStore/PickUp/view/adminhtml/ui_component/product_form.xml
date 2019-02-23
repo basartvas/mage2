@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<form xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Ui:etc/ui_configuration.xsd">
+    <modal name="advanced_inventory_modal">
+        <fieldset name="pickup_stock">
+            <settings>
+                <label translate="true">PickUp Stores Stock</label>
+                <dataScope/>
+            </settings>
+            <container name="pickup_stock" component="Magento_Ui/js/form/components/group" sortOrder="10">
+                <argument name="data" xsi:type="array">
+                    <item name="config" xsi:type="array">
+                        <item name="component" xsi:type="string">Magento_Ui/js/dynamic-rows/dynamic-rows</item>
+                        <item name="template" xsi:type="string">ui/dynamic-rows/templates/default</item>
+                        <item name="componentType" xsi:type="string">dynamicRows</item>
+                        <item name="recordTemplate" xsi:type="string">record</item>
+                        <item name="addButtonLabel" xsi:type="string">Add Row</item>
+                        <item name="deleteProperty" xsi:type="boolean">false</item>
+                    </item>
+                </argument>
+                <container name="record">
+                    <argument name="data" xsi:type="array">
+                        <item name="config" xsi:type="array">
+                            <item name="label" xsi:type="string" translate="true">Dynamic Rows</item>
+                            <item name="component" xsi:type="string" translate="true">Magento_Ui/js/dynamic-rows/record</item>
+                            <item name="isTemplate" xsi:type="boolean">true</item>
+                            <item name="is_collection" xsi:type="boolean">true</item>
+                            <item name="showFallbackReset" xsi:type="boolean">false</item>
+                        </item>
+                    </argument>
+                    <!--<field name="product_id" formElement="input">
+                        <argument name="data" xsi:type="array">
+                            <item name="config" xsi:type="array">
+                                <item name="source" xsi:type="string">block</item>
+                            </item>
+                        </argument>
+                        <settings>
+                            <dataType>text</dataType>
+                            <visible>false</visible>
+                            <dataScope>product_id</dataScope>
+                        </settings>
+                    </field>-->
+                    <field name="pickup_store_id" formElement="input">
+                        <!--<argument name="data" xsi:type="array">
+                            <item name="config" xsi:type="array">
+                                <item name="source" xsi:type="string">pickup_stock</item>
+                            </item>
+                        </argument>-->
+                        <settings>
+                            <validation>
+                                <rule name="required-entry" xsi:type="boolean">true</rule>
+                            </validation>
+                            <dataType>text</dataType>
+                            <label translate="true">PickUp Store Id</label>
+                            <!--<dataScope>pickup_stock.pickup_store_id</dataScope>-->
+                        </settings>
+                    </field>
+                    <field name="qty_in_store" formElement="input">
+                        <!--<argument name="data" xsi:type="array">
+                            <item name="config" xsi:type="array">
+                                <item name="source" xsi:type="string">pickup_stock</item>
+                            </item>
+                        </argument>-->
+                        <settings>
+                            <validation>
+                                <rule name="required-entry" xsi:type="boolean">true</rule>
+                            </validation>
+                            <dataType>text</dataType>
+                            <label translate="true">QTY in Store</label>
+                            <!--<dataScope>qty_in_store</dataScope>-->
+                        </settings>
+                    </field>
+                    <actionDelete>
+                        <argument name="data" xsi:type="array">
+                            <item name="config" xsi:type="array">
+                                <item name="componentType" xsi:type="string">actionDelete</item>
+                                <item name="dataType" xsi:type="string">text</item>
+                                <item name="fit" xsi:type="boolean">false</item>
+                                <item name="label" xsi:type="string">Actions</item>
+                                <item name="additionalClasses" xsi:type="string">data-grid-actions-cell</item>
+                                <item name="template" xsi:type="string">Magento_Backend/dynamic-rows/cells/action-delete</item>
+                            </item>
+                        </argument>
+                    </actionDelete>
+                    <field name="position">
+                        <argument name="data" xsi:type="array">
+                            <item name="config" xsi:type="array">
+                                <item name="dataType" xsi:type="string">number</item>
+                                <item name="formElement" xsi:type="string">input</item>
+                                <item name="componentType" xsi:type="string">field</item>
+                                <item name="label" xsi:type="string" translate="true">Position</item>
+                                <item name="dataScope" xsi:type="string">position</item>
+                                <item name="visible" xsi:type="boolean">false</item>
+                            </item>
+                        </argument>
+                    </field>
+                </container>
+            </container>
+        </fieldset>
+        <fieldset name="stock_data">
+            <settings>
+                <label translate="true">Stock Configuration</label>
+            </settings>
+        </fieldset>
+    </modal>
+</form>

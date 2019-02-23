@@ -17,4 +17,7 @@
             <argument name="resourceModel" xsi:type="string">InStore\PickUp\Model\ResourceModel\Store</argument>
         </arguments>
     </virtualType>
+    <type name="Magento\Catalog\Ui\DataProvider\Product\Form\ProductDataProvider">
+        <plugin name="InStore_PickUp_ProductDataProviderPlugin" type="InStore\PickUp\Plugin\ProductDataProviderPlugin" sortOrder="1" disabled="false" />
+    </type>
 </config>
