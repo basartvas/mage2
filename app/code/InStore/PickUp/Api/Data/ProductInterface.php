@@ -7,6 +7,17 @@ interface ProductInterface
     /**
      * @return int
      */
+    public function getEntId();
+
+    /**
+     * @param int $id
+     * @return void
+     */
+    public function setEntId(int $id);
+
+    /**
+     * @return int
+     */
     public function getProductId();
 
     /**
@@ -14,17 +25,6 @@ interface ProductInterface
      * @return void
      */
     public function setProductId(int $id);
-
-    /**
-     * @return string
-     */
-    public function getSku();
-
-    /**
-     * @param string $sku
-     * @return void
-     */
-    public function setSku(string $sku);
 
     /**
      * @return int

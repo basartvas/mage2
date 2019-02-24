@@ -122,7 +122,7 @@ class InstallSchema implements InstallSchemaInterface
         if (!$installer->tableExists('product_in_store')) {
             $table = $installer->getConnection()->newTable($installer->getTable('product_in_store'));
             $table->addColumn(
-                'product_id',
+                'entity_id',
                 Table::TYPE_INTEGER,
                 null,
                 [
@@ -131,17 +131,19 @@ class InstallSchema implements InstallSchemaInterface
                     'auto_increment' => true,
                     'unsigned' => true
                 ],
-                'Product in Store Id'
-            )
+                'Entity Id'
+                )
                 ->addColumn(
-                    'sku',
-                    Table::TYPE_TEXT,
-                    64,
-                    [
-                        'nullable' => true,
-                        'default' => NULL
-                    ],
-                    'Product SKU'
+                'product_id',
+                Table::TYPE_INTEGER,
+                null,
+                [
+                    'nullable' => false,
+                    'primary' => false,
+                    'auto_increment' => false,
+                    'unsigned' => true
+                ],
+                'Product in Store Id'
                 )
                 ->addColumn(
                     'pickup_store_id',
@@ -185,19 +187,7 @@ class InstallSchema implements InstallSchemaInterface
                 )
                 ->addForeignKey(
                     $installer->getFkName(
-                        'products_in_store',
-                        'sku',
-                        'catalog_product_entity',
-                        'sku'
-                    ),
-                    'sku',
-                    $installer->getTable('catalog_product_entity'),
-                    'sku',
-                    \Magento\Framework\DB\Ddl\Table::ACTION_CASCADE
-                )
-                ->addForeignKey(
-                    $installer->getFkName(
-                        'products_in_store',
+                        'product_in_store',
                         'pickup_store_id',
                         'pickup_store',
                         'pickup_store_id'

@@ -27,18 +27,17 @@
                             <item name="showFallbackReset" xsi:type="boolean">false</item>
                         </item>
                     </argument>
-                    <!--<field name="product_id" formElement="input">
-                        <argument name="data" xsi:type="array">
+                    <field name="product_id" formElement="input">
+                        <!--<argument name="data" xsi:type="array">
                             <item name="config" xsi:type="array">
                                 <item name="source" xsi:type="string">block</item>
                             </item>
-                        </argument>
+                        </argument>-->
                         <settings>
                             <dataType>text</dataType>
                             <visible>false</visible>
-                            <dataScope>product_id</dataScope>
                         </settings>
-                    </field>-->
+                    </field>
                     <field name="pickup_store_id" formElement="input">
                         <!--<argument name="data" xsi:type="array">
                             <item name="config" xsi:type="array">

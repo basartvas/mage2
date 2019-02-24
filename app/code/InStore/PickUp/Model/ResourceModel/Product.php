@@ -8,6 +8,6 @@ class Product extends AbstractDb
 {
     protected function _construct()
     {
-        $this->_init('product_in_store', 'product_id');
+        $this->_init('product_in_store', 'entity_id');
     }
 }

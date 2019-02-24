@@ -20,4 +20,7 @@
     <type name="Magento\Catalog\Ui\DataProvider\Product\Form\ProductDataProvider">
         <plugin name="InStore_PickUp_ProductDataProviderPlugin" type="InStore\PickUp\Plugin\ProductDataProviderPlugin" sortOrder="1" disabled="false" />
     </type>
+    <type name="Magento\Catalog\Controller\Adminhtml\Product\Save">
+        <plugin name="InStore_PickUp_Product_Save_Plugin" type="InStore\PickUp\Plugin\SavePlugin" sortOrder="1" disabled="false" />
+    </type>
 </config>

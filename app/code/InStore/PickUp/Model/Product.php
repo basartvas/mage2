@@ -47,6 +47,23 @@ class Product extends AbstractModel implements ProductInterface, IdentityInterfa
     /**
      * @return int
      */
+    public function getEntId(): int
+    {
+        return (int)$this->getData('entity_id');
+    }
+
+    /**
+     * @param int $id
+     * @return void
+     */
+    public function setEntId(int $id)
+    {
+        $this->setData('entity_id', $id);
+    }
+
+    /**
+     * @return int
+     */
     public function getProductId(): int
     {
         return (int)$this->getData('product_id');
@@ -59,23 +76,6 @@ class Product extends AbstractModel implements ProductInterface, IdentityInterfa
     public function setProductId(int $id)
     {
         $this->setData('product_id', $id);
-    }
-
-    /**
-     * @return string
-     */
-    public function getSku(): string
-    {
-        return $this->getData('sku');
-    }
-
-    /**
-     * @param string $sku
-     * @return void
-     */
-    public function setSku(string $sku)
-    {
-        $this->setData('sku', $sku);
     }
 
     /**
