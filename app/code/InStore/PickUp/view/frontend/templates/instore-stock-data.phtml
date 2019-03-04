@@ -1,0 +1,21 @@
+<?php if ($block->getInStoreStock()): ?>
+<div class="product-social-links">
+    <table>
+        <thead>
+        <tr>
+            <th>Store</th>
+            <th>QTY</th>
+        </tr>
+        <tbody>
+        <?php foreach ($block->getInStoreStock() as $item): ?>
+            <tr>
+                <td><?php echo $item['pickup_store_id']?></td>
+                <td><?php echo $item['qty_in_store']?></td>
+            </tr>
+        <?php endforeach; ?>
+        </tbody>
+    </table>
+</div>
+<?php endif; ?>
+
+

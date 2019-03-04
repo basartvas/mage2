@@ -1,0 +1,13 @@
+<?xml version="1.0"?>
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <body>
+        <referenceContainer  name="product.info.main">
+            <block
+                    template="InStore_PickUp::instore-stock-data.phtml"
+                    class="InStore\PickUp\Block\Product\InStoreStockData"
+                    name="instore-stock-data"
+                    after="-"/>
+                    <!-- NEEDS TO BE UPDATED ifconfig="academy/back_to_overview/status"-->
+        </referenceContainer>
+    </body>
+</page>
