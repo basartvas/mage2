@@ -3,24 +3,20 @@
 namespace InStore\PickUp\Model\Carrier;
 
 use Magento\Framework\App\Config\ScopeConfigInterface;
-/*use Magento\Framework\DataObject;*/
 use Magento\Shipping\Model\Carrier\AbstractCarrier;
 use Magento\Shipping\Model\Carrier\CarrierInterface;
-/*use Magento\Shipping\Model\Config;*/
 use Magento\Shipping\Model\Rate\ResultFactory;
-/*use Magento\Store\Model\ScopeInterface;*/
 use Magento\Quote\Model\Quote\Address\RateResult\ErrorFactory;
-/*use Magento\Quote\Model\Quote\Address\RateResult\Method;*/
 use Magento\Quote\Model\Quote\Address\RateResult\MethodFactory;
 use Magento\Quote\Model\Quote\Address\RateRequest;
 use Psr\Log\LoggerInterface;
 
-class PickupInStore extends AbstractCarrier implements CarrierInterface
+class Shipping extends AbstractCarrier implements CarrierInterface
 {
-    protected $code = 'pickup_shipping_method';
+    protected $_code = 'pickup';
     protected $isFixed = true;
-    protected $rateResultFactory;
-    protected $rateMethodFactory;
+    protected $_rateResultFactory;
+    protected $_rateMethodFactory;
     public function __construct(
         ScopeConfigInterface $scopeConfig,
         ErrorFactory $rateErrorFactory,
@@ -30,8 +26,8 @@ class PickupInStore extends AbstractCarrier implements CarrierInterface
         array $data = []
     )
     {
-        $this->rateResultFactory = $rateResultFactory;
-        $this->rateMethodFactory = $rateMethodFactory;
+        $this->_rateResultFactory = $rateResultFactory;
+        $this->_rateMethodFactory = $rateMethodFactory;
         parent::__construct($scopeConfig, $rateErrorFactory, $logger, $data);
     }
 
@@ -42,21 +38,22 @@ class PickupInStore extends AbstractCarrier implements CarrierInterface
 
     public function collectRates(RateRequest $request)
     {
-        if (!$this->isActive())
-        {
+        if (!$this->getConfigFlag('active')) {
             return false;
         }
-        $result = $this->rateResultFactory->create();
-        $shippingPrice = $this->getConfigData('price');
+        /** @var \Magento\Shipping\Model\Rate\Result $result */
+        $result = $this->_rateResultFactory->create();
 
-        $method = $this->rateMethodFactory->create();
+        /** @var \Magento\Quote\Model\Quote\Address\RateResult\Method $method */
+        $method = $this->_rateMethodFactory->create();
 
-        $method->setCarrier($this->getCarrierCode());
+        $method->setCarrier($this->_code);
         $method->setCarrierTitle($this->getConfigData('title'));
 
-        $method->setMethod($this->getCarrierCode());
+        $method->setMethod($this->_code);
         $method->setMethodTitle($this->getConfigData('name'));
 
+        $shippingPrice = $this->getConfigData('price');
         $method->setPrice($shippingPrice);
         $method->setCost($shippingPrice);
 
