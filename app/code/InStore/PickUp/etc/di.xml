@@ -4,6 +4,7 @@
     <preference for="InStore\PickUp\Api\Data\StoreInterface" type="InStore\PickUp\Model\Store"/>
     <preference for="InStore\PickUp\Api\ProductRepositoryInterface" type="InStore\PickUp\Model\ProductRepository"/>
     <preference for="InStore\PickUp\Api\Data\ProductInterface" type="InStore\PickUp\Model\Product"/>
+    <preference for="InStore\PickUp\Api\OfficeManagementInterface" type="InStore\PickUp\Model\OfficeManagement" />
     <type name="Magento\Framework\View\Element\UiComponent\DataProvider\CollectionFactory">
         <arguments>
             <argument name="collections" xsi:type="array">
