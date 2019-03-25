@@ -13,7 +13,7 @@ use Psr\Log\LoggerInterface;
 
 class Shipping extends AbstractCarrier implements CarrierInterface
 {
-    protected $_code = 'pickup';
+    protected $_code = 'pickup_shipping_method';
     protected $isFixed = true;
     protected $_rateResultFactory;
     protected $_rateMethodFactory;
@@ -33,18 +33,16 @@ class Shipping extends AbstractCarrier implements CarrierInterface
 
     public function getAllowedMethods()
     {
-        return [$this->getCarrierCode() => __($this->getConfigData('name'))];
+        return [$this->_code => __($this->getConfigData('name'))];
     }
 
     public function collectRates(RateRequest $request)
     {
-        if (!$this->getConfigFlag('active')) {
+        if (!$this->getConfigFlag('active'))
+        {
             return false;
         }
-        /** @var \Magento\Shipping\Model\Rate\Result $result */
         $result = $this->_rateResultFactory->create();
-
-        /** @var \Magento\Quote\Model\Quote\Address\RateResult\Method $method */
         $method = $this->_rateMethodFactory->create();
 
         $method->setCarrier($this->_code);

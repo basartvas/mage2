@@ -4,6 +4,7 @@
     <preference for="InStore\PickUp\Api\Data\StoreInterface" type="InStore\PickUp\Model\Store"/>
     <preference for="InStore\PickUp\Api\ProductRepositoryInterface" type="InStore\PickUp\Model\ProductRepository"/>
     <preference for="InStore\PickUp\Api\Data\ProductInterface" type="InStore\PickUp\Model\Product"/>
+    <preference for="InStore\PickUp\Api\OfficeManagementInterface" type="InStore\PickUp\Model\OfficeManagement" />
     <type name="Magento\Framework\View\Element\UiComponent\DataProvider\CollectionFactory">
         <arguments>
             <argument name="collections" xsi:type="array">
@@ -22,5 +23,8 @@
     </type>
     <type name="Magento\Catalog\Controller\Adminhtml\Product\Save">
         <plugin name="InStore_PickUp_Product_Save_Plugin" type="InStore\PickUp\Plugin\SavePlugin" sortOrder="1" disabled="false" />
+    </type>
+    <type name="Magento\Quote\Model\ShippingAssignment">
+        <plugin name="carrier-office-plugin" type="InStore\PickUp\Plugin\ShippingAssignmentPlugin" sortOrder="1" disabled="false"/>
     </type>
 </config>

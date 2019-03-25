@@ -1,0 +1,13 @@
+<div id="carrier-office-list-wrapper" data-bind="visible: selectedMethod() == 'pickup_shipping_method_pickup_shipping_method'">
+    <p data-bind="visible: !showOfficeSelection(), i18n: 'Please provide postcode to see nearest offices'"></p>
+    <div data-bind="visible: showOfficeSelection()">
+        <p>
+            <span data-bind="i18n: 'Select pickup office.'"></span>
+        </p>
+        <select id="carrier-office-list" data-bind="options: offices(),
+                                            value: selectedOffice,
+                                            optionsValue: 'pickup_store_id',
+                                            optionsText: function(item){return item.store_name + ' (' + item.store_address +')';}">
+        </select>
+    </div>
+</div>
