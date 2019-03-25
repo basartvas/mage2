@@ -22,12 +22,12 @@ define([
 
         initObservable: function () {
             this._super();
-            /*this.showOfficeSelection = ko.computed(function() {
-                return this.ofices().length != 0
-            }, this);*/
             this.showOfficeSelection = ko.computed(function() {
-                return true
+                return this.offices().length != 0
             }, this);
+            /*this.showOfficeSelection = ko.computed(function() {
+                return true
+            }, this);*/
 
             this.selectedMethod = ko.computed(function() {
                 var method = quote.shippingMethod();
@@ -37,17 +37,17 @@ define([
 
             quote.shippingMethod.subscribe(function(method) {
                 var selectedMethod = method != null ? method.carrier_code + '_' + method.method_code : null;
-                /*if (selectedMethod == 'pickup_shipping_method_pickup_shipping_method') {
+                if (selectedMethod == 'pickup_shipping_method_pickup_shipping_method') {
                     this.reloadOffices();
-                }*/
-                this.reloadOffices();
+                }
+                /*this.reloadOffices();*/
             }, this);
 
             this.selectedOffice.subscribe(function(office) {
                 if (quote.shippingAddress().extensionAttributes == undefined) {
                     quote.shippingAddress().extensionAttributes = {};
                 }
-                quote.shippingAddress().extensionAttributes.carrier_office = office;
+                quote.shippingAddress().extensionAttributes.pickup_store = office;
             });
 
 
